@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tu beda fajne dashbordy i w ogóle",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\n#siema\n\n\n\n\n\n\n\n\n\n\n\n\n\nUntitled\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMy Post\n\n\nPost description\n\n\n\nSzymon Door\n\n\nAug 10, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "los.html",
+    "href": "los.html",
+    "title": "los",
+    "section": "",
+    "text": "# tutaj bedzie losowanie pytan"
+  },
+  {
+    "objectID": "posts/post1.html",
+    "href": "posts/post1.html",
+    "title": "My Post",
+    "section": "",
+    "text": "siema co tutaj sie dzieje?"
+  },
+  {
+    "objectID": "posts/10-08-2025-first-post/index.html",
+    "href": "posts/10-08-2025-first-post/index.html",
+    "title": "My Post",
+    "section": "",
+    "text": "siema co tutaj sie dzieje?\n\n# tutaj beda odpowiedzi do pytan na obrone"
+  }
+]

@@ -1,0 +1,11 @@
+# website:
+#   title: "Szymon Door"
+#   navbar:
+#     left:
+#       - href: index.qmd
+#         text: Home
+
+freeze: auto
+
+# enable banner style title blocks ----
+title-block-banner: true

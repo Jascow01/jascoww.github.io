@@ -1,0 +1,17 @@
+---
+title: "My Post"
+description: "Post description"
+
+author: "Szymon Door"
+date: "8/10/2025"
+image: "preview-1.webp"
+category: 
+  IAD
+#draft: true
+---
+
+siema co tutaj sie dzieje?
+
+```{r}
+# tutaj beda odpowiedzi do pytan na obrone
+```
