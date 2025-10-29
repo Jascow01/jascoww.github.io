@@ -1,11 +1,9 @@
-# website:
-#   title: "Szymon Door"
-#   navbar:
-#     left:
-#       - href: index.qmd
-#         text: Home
-
-freeze: auto
-
-# enable banner style title blocks ----
-title-block-banner: true
+# posts/_metadata.yml
+title-block-banner: true   # ładny nagłówek z tytułem
+author: "Szymon Door"
+#categories: [""]
+#image: "cover.jpg"         # domyślna miniaturka posta
+format:
+  html:
+    toc: true
+    toc-depth: 3

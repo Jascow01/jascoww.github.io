@@ -1,22 +1,32 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "Szymon Door"
+  title: "Coś tu będzie"
+  description: "Notatki, przemyślenia i projekty"
+  #favicon: favicon.png
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: los.qmd
-        text: Losowanie
+      - text: "Home"
+        href: index.qmd
+      - text: "Posty"
+        href: posts/
+      - text: "O mnie"
+        href: about.qmd
+    right:
+      - icon: github
+        href: https://github.com/Jascoww
+      - icon: rss
+        href: posts/index.xml
+  page-footer:
+    left: "© 2025 Szymon Door"
+    right: "Zbudowano w [Quarto](https://quarto.org/)"
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
     toc: true
-
-editor: visual
-
+    toc-location: left
+    page-layout: article

@@ -1,9 +1,11 @@
 {
-  "hash": "d4db19d4cf9cba62f7ad398c1c8e09f0",
+  "hash": "466c87ff87682d972f1ede73ad9ce070",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"My Post\"\ndescription: \"Post description\"\n\nauthor: \"Szymon Door\"\ndate: \"8/10/2025\"\nimage: \"preview-1.webp\"\ncategory: \n  IAD\n#draft: true\n---\n\n\n\nsiema co tutaj sie dzieje?\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# tutaj beda odpowiedzi do pytan na obrone\n```\n:::\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"My Post\"\ndescription: \"Post description\"\n\nauthor: \"Szymon Door\"\ndate: \"8/10/2025\"\nimage: \"preview-1.webp\"\ncategory: \n  IAD\n#draft: true\n---\n\n\n\n\n\n\n\n\n\n\n\n\nsiema co tutaj sie dzieje?\n\n\n\n\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# tutaj beda odpowiedzi do pytan na obrone\n```\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
