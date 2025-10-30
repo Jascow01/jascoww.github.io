@@ -108,10 +108,24 @@ Metroda ortogonalizacji Grama-Schmidta:
 ### 3. Wybrane metody dekompozycji macierzy.
 
 -   Rozkład $LU$
+
+![](images/lu.png)
+
 -   Rozkład $QR$
+
+![](images/qr.png)
+
 -   Rozkład $SVD$
+
+![](images/svd.png)
+
 -   Rozkład $Shura$
+
+![](images/schura.png)
+
 -   Rozkłąd $Choleskiego$
+
+![](images/choleskiego.png)
 
 <br>
 
