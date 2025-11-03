@@ -184,6 +184,11 @@ Problemy zanikającegi i eksplodującego gradientu można przedstawić w następ
 
 -   **Zanikający gradient**: Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.
 
+Aby zminimalizować ten problem stosuje się techniki takie jak:
+
+  - Mniejszy *batch size* podczas uczenia sieci;
+  - W przypadku sieci 
+
 -   **Eksplodujący gradient**: Gradienty stają się zaskakująco duże, przez co następują duże aktualizacje wag (powtarzające się mnożenie dużych wag) każdego węzła w głebokiej sieci neuronowej
 
 ### 3. Rozwiązania z zakresu technik głębokiego uczenia dedykowanych do zadań wizji komputerowej.
@@ -268,17 +273,100 @@ Optymalizacja w Shiny sprowadza się do:
 
 ### 1. Rozkłady statystyczne stosowane w analizie niezawodności.
 
-1.  Rozkład wykładniczy (Exponential distribution)
+#### 1. Rozkład wykładniczy
+Funkcja gęstości prawdopodobieństwa dla zmiennej losowej $x \ge 0$.
 
-2.  Rozkład Weibulla (Weibull distribution)
+*   **Parametr:** $\lambda > 0$ (parametr częstości, *rate parameter*)
 
-3.  Rozkład normalny (Normal / Gaussian distribution)
+$$
+f(x; \lambda) = \lambda e^{-\lambda x}
+$$
 
-4.  Rozkład Gamma
+#### 2. Rozkład Weibulla
+Funkcja gęstości prawdopodobieństwa dla zmiennej losowej $x \ge 0$.
 
-5.  Rozkład Rayleigha
+*   **Parametry:**
+    *   $k > 0$ (parametr kształtu, *shape parameter*)
+    *   $\lambda > 0$ (parametr skali, *scale parameter*)
 
-6.  Rozkład Bernoulliego / dwumianowy / Poissona
+$$
+f(x; k, \lambda) = \frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k-1} e^{-(x/\lambda)^k}
+$$
+
+*Uwaga: Gdy $k=1$, rozkład Weibulla sprowadza się do rozkładu wykładniczego z parametrem $\lambda$.*
+
+#### 3. Rozkład normalny
+Funkcja gęstości prawdopodobieństwa (PDF) dla zmiennej losowej $x \in (-\infty, \infty)$.
+
+*   **Parametry:**
+    *   $\mu$ (wartość oczekiwana, *mean*)
+    *   $\sigma^2 > 0$ (wariancja, *variance*), gdzie $\sigma$ to odchylenie standardowe
+
+$$
+f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{ - \frac{1}{2} \left( \frac{x-\mu}{\sigma} \right)^2 }
+$$
+
+#### 4. Rozkład Gamma
+Funkcja gęstości prawdopodobieństwa dla zmiennej losowej $x \ge 0$.
+
+*   **Parametry:**
+    *   $\alpha > 0$ (parametr kształtu, *shape parameter*)
+    *   $\beta > 0$ (parametr częstości, *rate parameter*)
+
+$$
+f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}
+$$
+
+gdzie $\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}dt$ to funkcja Gamma.
+
+#### 5. Rozkład Rayleigha
+Funkcja gęstości prawdopodobieństwa dla zmiennej losowej $x \ge 0$.
+
+*   **Parametr:** $\sigma > 0$ (parametr skali, *scale parameter*)
+
+$$
+f(x; \sigma) = \frac{x}{\sigma^2} e^{-x^2 / (2\sigma^2)}
+$$
+
+*Uwaga: Jest to szczególny przypadek rozkładu Weibulla dla $k=2$.*
+
+***
+
+
+
+#### Rozkład Bernoulliego
+Opisuje wynik pojedynczej próby, która może zakończyć się sukcesem (1) lub porażką (0).
+
+*   **Parametr:** $p \in [0, 1]$ (prawdopodobieństwo sukcesu)
+*   **Wartości:** $k \in \{0, 1\}$
+
+$$
+P(X=k) = p^k (1-p)^{1-k}
+$$
+
+#### Rozkład dwumianowy
+Opisuje liczbę sukcesów ($k$) w $n$ niezależnych próbach Bernoulliego.
+
+*   **Parametry:**
+    *   $n \ge 0$ (liczba prób, liczba całkowita)
+    *   $p \in [0, 1]$ (prawdopodobieństwo sukcesu w pojedynczej próbie)
+*   **Wartości:** $k \in \{0, 1, 2, ..., n\}$
+
+$$
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+gdzie $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ to symbol Newtona.
+
+#### Rozkład Poissona
+Opisuje liczbę zdarzeń w ustalonym przedziale czasu lub przestrzeni, jeśli zdarzenia te zachodzą ze stałą średnią częstotliwością.
+
+*   **Parametr:** $\lambda > 0$ (średnia liczba zdarzeń w przedziale)
+*   **Wartości:** $k \in \{0, 1, 2, ...\}$
+
+$$
+P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
 
 ### 2. Modele szeregowe, równoległe i mieszane obiektów technicznych.
 
@@ -427,6 +515,119 @@ Generatory możemy podzielić na:
     -   Charakteryzują się bardzo długim okresem i dobrą równomiernością rozkładu liczb. Oparte na bardziej złożonych zależnościach, np. Mersenne Twister
 
 <br>
+
+
+Metoda Monte Carlo to technika numeryczna służąca do przybliżania wartości całek oznaczonych. Jest szczególnie użyteczna w przypadkach, gdy:
+*   Funkcja podcałkowa jest bardzo skomplikowana.
+*   Obszar całkowania ma nieregularny kształt.
+*   Całka jest wielowymiarowa (np. całka podwójna lub potrójna), co sprawia, że tradycyjne metody analityczne lub numeryczne (jak metoda trapezów czy Simpsona) stają się nieefektywne.
+
+**Główna idea:** Zamiast analitycznie obliczać pole pod wykresem funkcji, "strzelamy" losowo punktami w zdefiniowany obszar i na podstawie proporcji trafień szacujemy wynik.
+
+#### 2. Generatory liczb pseudolosowych 
+Generatory liczb pseudolosowych to algorytmy, które produkują sekwencje liczb naśladujące właściwości liczb losowych. W kontekście całkowania potrzebujemy generatora, który potrafi tworzyć liczby z **rozkładu jednostajnego** (każda liczba w danym zakresie ma takie samo prawdopodobieństwo wylosowania).
+
+Służą one do generowania współrzędnych `(x, y)` dla każdego z losowych "strzałów". Jakość i statystyczne właściwości generatora (np. brak korelacji między kolejnymi liczbami) mają bezpośredni wpływ na dokładność uzyskanej aproksymacji całki.
+
+Załóżmy, że chcemy obliczyć całkę oznaczoną:
+$$ I = \int_a^b f(x) dx $$
+
+Reprezentuje ona pole powierzchni pod krzywą $y = f(x)$ na przedziale od $x=a$ do $x=b$.
+
+**Algorytm postępowania:**
+
+1.  **Określenie obszaru próbkowania:**
+    Tworzymy prostokąt, który całkowicie zawiera interesujący nas obszar pod wykresem.
+    *   Szerokość prostokąta to długość przedziału całkowania: $w = b - a$.
+    *   Wysokość prostokąta $M$ musi być równa lub większa od maksymalnej wartości funkcji $f(x)$ na przedziale $[a, b]$. Czyli $M \ge \max_{x \in [a,b]} f(x)$.
+    *   Pole tego prostokąta wynosi: $A_{\text{prostokąt}} = (b-a) \cdot M$.
+
+2.  **Losowe próbkowanie:**
+    Przy użyciu generatora liczb pseudolosowych generujemy dużą liczbę $N$ losowych punktów $(x_i, y_i)$ o współrzędnych równomiernie rozłożonych wewnątrz prostokąta:
+    *   $x_i$ jest losowane z przedziału $[a, b]$.
+    *   $y_i$ jest losowane z przedziału $[0, M]$.
+
+3.  **Zliczanie "trafień":**
+    Dla każdego wygenerowanego punktu $(x_i, y_i)$ sprawdzamy, czy znajduje się on **pod wykresem funkcji** $f(x)$. Warunek ten jest spełniony, jeśli:
+    $$ y_i \le f(x_i) $$
+    Zliczamy wszystkie punkty, które spełniają ten warunek. Nazwijmy tę liczbę $k$.
+
+4.  **Aproksymacja pola:**
+    Założenie metody Monte Carlo mówi, że stosunek pola pod wykresem do pola całego prostokąta jest w przybliżeniu równy stosunkowi liczby punktów pod wykresem ($k$) do całkowitej liczby wylosowanych punktów ($N$).
+
+    $$ \frac{\text{Pole pod wykresem}}{\text{Pole prostokąta}} \approx \frac{k}{N} $$
+
+    Przekształcając ten wzór, otrzymujemy przybliżoną wartość całki:
+
+    $$ I \approx \frac{k}{N} \cdot \text{Pole prostokąta} $$
+
+    Co daje:
+    $$ \int_a^b f(x) dx \approx \frac{k}{N} \cdot (b-a) \cdot M $$
+
+   #### 4. Właściwości i uwagi
+
+*   **Zbieżność:** Dokładność metody rośnie wraz ze wzrostem liczby prób $N$. Błąd statystyczny aproksymacji jest proporcjonalny do $\frac{1}{\sqrt{N}}$, co oznacza, że aby dziesięciokrotnie zwiększyć dokładność, trzeba stukrotnie zwiększyć liczbę losowań.
+*   **Zalety:**
+    *   Prostota implementacji.
+    *   Niezwykła skuteczność przy całkach wielowymiarowych (gdzie inne metody zawodzą z powodu tzw. "klątwy wymiarowości").
+    *   Łatwość adaptacji do nieregularnych i złożonych obszarów całkowania.
+*   **Wady:**
+    *   Wolna zbieżność w porównaniu do deterministycznych metod numerycznych dla prostych całek jednowymiarowych.
+    *   Wynik jest probabilistyczny – każde uruchomienie algorytmu da nieco inny, choć zbliżony, rezultat.
+
+```{r}
+#| echo: false
+# Ustawienie ziarna losowości dla powtarzalności wyników
+set.seed(123)
+
+n_points <- 10000
+
+radius <- 1
+
+x_coords <- runif(n_points, min = -radius, max = radius)
+y_coords <- runif(n_points, min = -radius, max = radius)
+
+
+distance_sq <- x_coords^2 + y_coords^2
+inside_circle <- distance_sq <= radius^2
+
+k <- sum(inside_circle)
+
+area_square <- (2 * radius)^2
+
+
+approximated_area <- (k / n_points) * area_square
+
+point_colors <- ifelse(inside_circle, "steelblue", "firebrick")
+
+
+plot(x_coords, y_coords, 
+     col = point_colors, 
+     pch = 20,                          # Małe, pełne kółka jako punkty
+     cex = 0.5,                         # Rozmiar punktów
+     xlab = "Współrzędna X", 
+     ylab = "Współrzędna Y",
+     main = paste("Metoa Monte Carlo\nPrzybliżenie Pi =", round(approximated_area, 4)),
+     asp = 1                            # Kluczowe dla zachowania proporcji (koło wygląda jak koło)
+)
+
+# Rysowanie granic kwadratu
+rect(xleft = -radius, ybottom = -radius, xright = radius, ytop = radius, 
+     border = "black", lwd = 2)
+
+# Rysowanie idealnego okręgu
+# Generujemy punkty na obwodzie koła
+theta <- seq(0, 2 * pi, length.out = 200)
+lines(x = radius * cos(theta), y = radius * sin(theta), 
+      col = "darkgreen", lwd = 3)
+
+# Dodanie legendy
+legend("topright", 
+       legend = c("Wewnątrz koła", "Na zewnątrz koła"), 
+       col = c("steelblue", "firebrick"), 
+       pch = 20, 
+       bg = "white")
+```
 
 ## 6. Podstawy teorii sterowania
 
