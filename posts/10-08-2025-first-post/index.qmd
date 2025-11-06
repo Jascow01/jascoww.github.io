@@ -629,13 +629,76 @@ legend("topright",
        bg = "white")
 ```
 
-## 6. Podstawy teorii sterowania
+## 6. Podstawy teorii sterowania [Notatki na podstawie książki](http://bc.tu.kielce.pl/440/1/Stefanski_MPI-155.pdf)
+
 
 ### 1. Sposoby tworzenia modeli matematycznych obiektów lub procesów sterowania. Identyfikacja procesu sterowania.
 
+Model matematyczny jest zdefiniowany jako **zależność sygnałów wyjściowych od sygnałów wejściowych, wyrażona w postaci równań matematycznych** (s. 13).
+
+**Sposoby tworzenia modeli matematycznych to (s. 52):**
+
+1.  **Równania różniczkowe i różnicowe:**
+    *   **Równania różniczkowe** opisują obiekty ciągłe. Ogólna postać dla obiektu liniowego, stacjonarnego i jednowymiarowego jest przedstawiona na s. 52.
+    *   **Równania różnicowe** są odpowiednikiem dla układów dyskretnych, gdzie czas ma wartość dyskretną (s. 53).
+
+2.  **Transmitancje operatorowe:**
+    *   Dla **układów ciągłych** jest to stosunek transformaty Laplace’a sygnału wyjściowego Y(s) do transformaty Laplace’a sygnału wejściowego U(s), przy zerowych warunkach początkowych (s. 56).
+    *   Dla **układów dyskretnych** jest to stosunek transformaty Z sygnału wyjściowego Y(z) do transformaty sygnału wejściowego U(z) (s. 58).
+
+3.  **Równania stanu:**
+    *   Opisują dynamikę układu za pomocą układu równań różniczkowych (dla układów ciągłych) lub różnicowych (dla układów dyskretnych) pierwszego rzędu. Model ten składa się z **równania stanu** (opisującego dynamikę wewnętrznych zmiennych stanu) i **równania wyjścia** (wiążącego zmienne stanu z sygnałem wyjściowym) (s. 63-65).
+
+4.  **Charakterystyki czasowe i częstotliwościowe:**
+    *   Chociaż są to głównie narzędzia analizy, mogą również służyć jako forma modelu matematycznego, zwłaszcza gdy są wyznaczane eksperymentalnie. Przykłady to **odpowiedź skokowa h(t)**, **odpowiedź impulsowa g(t)** (s. 68) oraz charakterystyki częstotliwościowe (np. **amplitudowo-fazowa**) (s. 72).
+
+**Identyfikacja procesu sterowania (s. 84):**
+
+1.  **Analiza teoretyczna:** Budowa modelu na podstawie znanych praw fizycznych rządzących procesem.
+2.  **Analiza eksperymentalna:** Określenie modelu na podstawie obserwacji "odpowiedzi układu na [...] typowe wymuszenia" (s. 85). Konkretnym przykładem jest **"Eksperymentalne wyznaczanie charakterystyk częstotliwościowych"** (s. 81), które polega na rejestrowaniu odpowiedzi obiektu na sygnał harmoniczny o różnej częstotliwości i na tej podstawie budowaniu modelu. Innym przykładem jest wyznaczanie charakterystyki statycznej przez pomiary w stanie ustalonym (s. 53).
+
+---
+
 ### 2. Charakterystyka statyczna i charakterystyka dynamiczna procesu. Przykłady obu charakterystyk dla wybranego procesu.
 
+**Charakterystyka statyczna:**
+
+Jest to **zależność sygnału wyjściowego od wejściowego w stanie ustalonym** (s. 53). Wyznacza się ją z równania różniczkowego poprzez przyrównanie wszystkich pochodnych do zera. W przypadku opisu za pomocą transmitancji operatorowej G(s), charakterystykę statyczną uzyskuje się, przyjmując s = 0 (s. 57). Definiuje ona statyczne wzmocnienie obiektu.
+
+**Charakterystyka dynamiczna:**
+
+Charakterystyka dynamiczna pokazuje, jak układ zachowuje się w czasie w odpowiedzi na zmianę sygnału wejściowego. Główne formy opisu właściwości dynamicznych to (s. 52, 68, 72):
+
+*   **Charakterystyki czasowe:** Pokazują odpowiedź układu w dziedzinie czasu. Najważniejsze z nich:
+    *   **Odpowiedź skokowa h(t):** Odpowiedź na sygnał jednostkowy 1(t).
+    *   **Odpowiedź impulsowa g(t):** Odpowiedź na impuls Diraca δ(t).
+*   **Charakterystyki częstotliwościowe:** Opisują zachowanie układu w stanie ustalonym przy wymuszeniu sinusoidalnym o różnej częstotliwości. Przykłady to charakterystyka amplitudowo-fazowa (wykres Nyquista) oraz logarytmiczne charakterystyki amplitudowa i fazowa (wykresy Bodego).
+
+**Przykład dla wybranego procesu (Człon inercyjny pierwszego rzędu, s. 112):**
+
+*   **Równanie różniczkowe:** $T * \frac{dy(t)}{dt} + y(t) = K * u(t)$
+*   **Transmitancja:** $G(s) = \frac{K}{(Ts + 1)}$
+
+1.  **Charakterystyka statyczna:**
+    *   Z równania różniczkowego: W stanie ustalonym $\frac{dy(t)}{dt} = 0$, co daje $y(t) = K * u(t)$. Jest to zależność liniowa, a jej nachylenie $K$ to wzmocnienie statyczne.
+    *   Z transmitancji: $G(0) = \frac{K}{(T*0 + 1)}= K$.
+
+2.  **Charakterystyki dynamiczne:**
+    *   **Odpowiedź skokowa (czasowa):** $h(t) = K(1 - e^{(\frac{-t}{T})})$. Jest to narastająca funkcja wykładnicza, która asymptotycznie dąży do wartości $K$ (pokazana na Rys. 4.11).
+    *   **Charakterystyka amplitudowo-fazowa (częstotliwościowa):** Jest to półokrąg o średnicy $K$ w prawej półpłaszczyźnie zespolonej (pokazana na Rys. 4.11).
+    *   **Logarytmiczna charakterystyka amplitudowa:** Dla małych częstotliwości jest to linia pozioma na poziomie $20logK$, a dla dużych częstotliwości opada z nachyleniem -20 dB/dekadę (pokazana na Rys. 4.11).
+
+---
+
 ### 3. Metody ograniczania skutków niepożądanego oddziaływania na proces.
+
+Niepożądane oddziaływania na proces są **"zakłóceniami"** (s. 12). Główną metodą ograniczania ich skutków jest zastosowanie **sterowania w układzie zamkniętym, czyli regulacji ze sprzężeniem zwrotnym** (s. 15).
+
+Mechanizm działania tej metody jest następujący (s. 15-17):
+
+1.  **Pomiar sygnału wyjściowego:** Wartość regulowanej wielkości wyjściowej $y(t)$ jest stale mierzona.
+2.  **Porównanie z wartością zadaną:** Zmierzona wartość jest porównywana z wartością pożądaną (zadaną) $w(t)$. Różnica tych sygnałów $e(t) = w(t) - y(t)$ nazywana jest **uchybem regulacji**.
+3.  **Działanie regulatora:** Uchyb $e(t)$ jest wprowadzany do **regulatora**, który na jego podstawie generuje odpowiedni **sygnał sterujący $u(t)$**. Sygnał ten ma na celu takie oddziaływanie na obiekt, aby zminimalizować uchyb, a tym samym skompensować wpływ zakłóceń.
 
 <br>
 
@@ -710,7 +773,7 @@ Ten model jest typowy dla supermarketów z wieloma kasami, gdzie każda kasa ma 
 
 *   **Wydajność i równoważenie obciążenia:** System ten jest **z natury mniej wydajny** niż system z jedną kolejką. Może wystąpić sytuacja, w której jeden serwer jest bezczynny (jego kolejka jest pusta), podczas gdy w innych kolejkach klienci oczekują na obsługę. Równoważenie obciążenia jest niedoskonałe i zależy od decyzji klientów.
 
-*   **Złożoność analizy:** Analiza jest znacznie prostsza, ponieważ system można traktować jako **`$c$` niezależnych systemów M/M/1**.
+*   **Złożoność analizy:** Analiza jest znacznie prostsza, ponieważ system można traktować jako **$c$ niezależnych systemów M/M/1**.
     *   Zakładając, że strumień wejściowy $\lambda$ jest równomiernie rozłożony na $c$ kolejek, każda z nich otrzymuje strumień zgłoszeń o natężeniu $\lambda_i = \lambda / c$.
     *   Dla każdej z tych kolejek stosuje się proste wzory dla systemu **M/M/1**:
         *   Współczynnik wykorzystania pojedynczego serwera: $\rho_i = \lambda_i / \mu = (\lambda / c) / \mu = \rho$.
@@ -739,12 +802,12 @@ Model ten opisuje procesy wieloetapowe, takie jak linia produkcyjna, proces skł
 **Właściwości i sposób oszacowania:**
 
 *   **Złożoność analizy:** Sposób oszacowania silnie zależy od założeń dotyczących buforów i rozkładów czasów obsługi.
-    *   **Przypadek prosty (Twierdzenie Burke'a):** Jeśli każdy etap to system M/M/1 z **nieskończonym buforem**, to wyjściowy strumień zgłoszeń z każdego etapu jest również procesem Poissona o tym samym natężeniu `$\lambda$`. Dzięki temu cały system można analizować jako **serię niezależnych systemów M/M/1**.
+    *   **Przypadek prosty (Twierdzenie Burke'a):** Jeśli każdy etap to system M/M/1 z **nieskończonym buforem**, to wyjściowy strumień zgłoszeń z każdego etapu jest również procesem Poissona o tym samym natężeniu $\lambda$. Dzięki temu cały system można analizować jako **serię niezależnych systemów M/M/1**.
         *   **Średni czas pobytu w całym systemie ($W_{\text{total}}$)** jest po prostu sumą średnich czasów pobytu na każdym etapie: $W_{\text{total}} = W_1 + W_2 + \dots + W_c$.
         *   **Średnia liczba klientów w systemie ($L_{\text{total}}$)** to suma średnich liczb klientów na każdym etapie: $L_{\text{total}} = L_1 + L_2 + \dots + L_c$.
     *   **Przypadek złożony (Skończone bufory):** Jest to sytuacja znacznie bardziej realistyczna i trudniejsza analitycznie.
-        *   **Zjawisko blokowania:** Jeśli bufor między serwerem `$i$` a `$i+1$` jest pełny, serwer `$i$` po zakończeniu obsługi musi czekać (jest blokowany), aż zwolni się miejsce w buforze. To drastycznie obniża przepustowość całego systemu.
-        *   **Wąskie gardło (Bottleneck):** Przepustowość całego systemu jest ograniczona przez najwolniejszy etap (serwer o najniższym tempie obsługi `$\mu$`). Ten etap nazywany jest "wąskim gardłem".
+        *   **Zjawisko blokowania:** Jeśli bufor między serwerem $i$ a $i+1$ jest pełny, serwer $i$ po zakończeniu obsługi musi czekać (jest blokowany), aż zwolni się miejsce w buforze. To drastycznie obniża przepustowość całego systemu.
+        *   **Wąskie gardło (Bottleneck):** Przepustowość całego systemu jest ograniczona przez najwolniejszy etap (serwer o najniższym tempie obsługi $\mu$). Ten etap nazywany jest "wąskim gardłem".
         *   **Metody analizy:** Dokładne rozwiązania analityczne są rzadkie. Do oszacowania właściwości takich systemów najczęściej wykorzystuje się **symulacje komputerowe** lub metody aproksymacyjne.
 
 **Podsumowując:** Kluczowe dla analizy systemów szeregowych jest zjawisko blokowania i identyfikacja wąskiego gardła. Wydajność całego łańcucha jest determinowana przez jego najsłabsze ogniwo.
@@ -940,7 +1003,116 @@ czyli każdy wiersz macierzy granicznej jest identyczny i równy rozkładowi erg
 
 ### 1. Całki stochastyczne: ich rodzaje i definicje.
 
+Całka stochastyczna jest narzędziem analizy stochastycznej, uogólniającym pojęcie całki deterministycznej (np. Riemanna-Stieltjesa) na przypadki, w których funkcja, po której całkujemy, jest procesem stochastycznym. Klasyczne teorie całkowania zawodzą, ponieważ trajektorie wielu ważnych procesów, jak proces Wienera, mają **nieskończone wahanie** co zostało wspomniane w rozdziale 7.3 [skryptu](https://mst.mimuw.edu.pl/wyklady/was/wyklad.pdf), co uniemożliwia zdefiniowanie dla nich całki w sensie Riemanna-Stieltjesa.
+
+Najważniejszymi rodzajami całek stochastycznych są całka Itô i całka Stratonowicza.
+
+#### a) Całka Itô
+
+Całka Itô jest najczęściej stosowaną całką stochastyczną, głównie ze względu na jej kluczową własność: całka z procesu jest [martyngałem](https://www.deltami.edu.pl/media/articles/2007/05/delta-2007-05-martyngaly.pdf). Jej konstrukcja, opisana w rozdziale 8 [skryptu](https://mst.mimuw.edu.pl/wyklady/was/wyklad.pdf), przebiega w kilku krokach, analogicznie do konstrukcji całki Lebesgue'a.
+
+**Krok 1: Definicja dla procesów prostych (elementarnych)**
+
+Najpierw definiuje się całkę dla klasy tzw. **procesów elementarnych** (lub prostych, w skrypcie "prognozowalnych"), które są stałe na przedziałach czasowych. Proces elementarny $X_t$ ma postać:
+$$
+X_t = \sum_{k=1}^{m} \xi_{k-1} \mathbb{I}_{(t_{k-1}, t_k]}(t)
+$$
+gdzie $\xi_{k-1}$ jest zmienną losową mierzalną względem $\sigma$-ciała $\mathcal{F}_{t_{k-1}}$ (informacji dostępnej do chwili $t_{k-1}$). Definicja całki Itô dla takiego procesu względem procesu Wienera $W_t$ jest naturalna:
+$$
+\int_0^t X_s dW_s := \sum_{k=1}^{m} \xi_{k-1} (W_{t_k \land t} - W_{t_{k-1} \land t})
+$$
+Kluczowe jest to, że wartość procesu $X_s$ na przedziale $(t_{k-1}, t_k]$ jest ustalana na początku tego przedziału. Mówimy, że proces jest **nieantycypujący**.
+
+**Krok 2: Izometria Itô**
+
+Dla procesów elementarnych zachodzi fundamentalna własność, tzw. **izometria Itô** (wspomniana w Stwierdzeniu 8.4). Łączy ona drugi moment całki z całką drugiego momentu integranda:
+$$
+E\left[ \left( \int_0^T X_s dW_s \right)^2 \right] = E\left[ \int_0^T X_s^2 ds \right]
+$$
+Ta równość oznacza, że operator całkowania stochastycznego jest izometrią pomiędzy przestrzenią procesów $L^2(\Omega \times [0,T])$ a przestrzenią zmiennych losowych $L^2(\Omega)$.
+
+**Krok 3: Rozszerzenie na ogólne procesy**
+
+Dzięki własności izometrii, definicję całki można rozszerzyć z gęstej podprzestrzeni procesów elementarnych na całą przestrzeń procesów prognozowalnych $X_t$ spełniających warunek $E[\int_0^T X_s^2 ds] < \infty$.
+
+**Uogólnienie: Całka względem martyngałów**
+
+Konstrukcję można uogólnić, zastępując proces Wienera $W_t$ dowolnym ciągłym martyngałem (lub lokalnym martyngałem) $M_t$ (rozdział 10. skryptu). Wówczas w izometrii Itô zwykła miara czasu $ds$ zostaje zastąpiona przez miarę związaną z **wariacją kwadratową** martyngału, $d\langle M \rangle_s$:
+$$
+E\left[ \left( \int_0^T X_s dM_s \right)^2 \right] = E\left[ \int_0^T X_s^2 d\langle M \rangle_s \right]
+$$
+
+#### b) Całka Stratonowicza
+
+Całka Stratonowicza (oznaczana jako $\int Y_s \circ dW_s$) jest alternatywną definicją, motywowaną chęcią zachowania klasycznych reguł rachunku różniczkowego, w szczególności reguły łańcuchowej. W jej definicji, zamiast brać wartość integranda na początku przedziału (jak w całce Itô), nieformalnie używa się punktu pośredniego.
+
+Formalnie, całkę Stratonowicza często definiuje się poprzez całkę Itô (jak w Ćwiczeniu 13.12 skryptu):
+$$
+\int_0^t Y_s \circ dZ_s := \int_0^t Y_s dZ_s + \frac{1}{2} \langle Y, Z \rangle_t
+$$
+gdzie $\langle Y, Z \rangle_t$ to **kowariacja kwadratowa** procesów $Y$ i $Z$.
+
+#### Porównanie całki Itô i Stratonowicza
+
+| Cecha | Całka Itô ($\int X_s dW_s$) | Całka Stratonowicza ($\int X_s \circ dW_s$) |
+| :--- | :--- | :--- |
+| **Punkt ewaluacji** | Początek przedziału (nieantycypująca) | Środek przedziału (antycypująca) |
+| **Własność martyngałowa** | $\int X_s dW_s$ jest martyngałem (lokalnym) | Generalnie nie jest martyngałem |
+| **Reguła łańcuchowa** | Wymaga dodatkowego członu (wzór Itô) | Ma taką samą postać jak w klasycznym rachunku |
+| **Zastosowania** | Finanse matematyczne, biologia, teoria filtracji | Inżynieria, fizyka (gdy szum jest idealizacją procesu gładkiego) |
+
+---
+
 ### 2. Różniczka stochastyczna Itô, wzór Itô.
+
+#### a) Różniczka stochastyczna
+
+Równanie w postaci **różniczki stochastycznej** jest zwięzłym zapisem stochastycznego równania całkowego. Zapis:
+$$
+dX_t = b(t, X_t) dt + \sigma(t, X_t) dW_t
+$$
+jest formalnym skrótem dla równania (jak w Definicji 14.1 skryptu):
+$$
+X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dW_s
+$$
+- **$b(t, X_t)$** to **dryf (drift)**, opisujący deterministyczną tendencję procesu.
+- **$\sigma(t, X_t)$** to **dyfuzja (diffusion)** lub **zmienność (volatility)**, opisująca losową składową procesu.
+
+Proces $X_t$ opisany takim równaniem nazywany jest **procesem Itô** lub procesem dyfuzji.
+
+#### b) Wzór Itô (Lemat Itô)
+
+Wzór Itô jest jednym z najważniejszych wyników analizy stochastycznej. Jest to odpowiednik reguły łańcuchowej dla funkcji od procesów Itô. Pokazuje, jak zmienia się w czasie gładka funkcja $f$ procesu stochastycznego.
+
+W odróżnieniu od klasycznego rachunku, ze względu na niezerową wariację kwadratową procesu Wienera (nieformalnie $(dW_t)^2 = dt$), w rozwinięciu Taylora funkcji $f(X_t)$ należy uwzględnić również wyraz drugiego rzędu.
+
+**Wzór Itô dla ogólnego semimartyngału**
+
+W skrypcie (Twierdzenie 13.1) wzór jest podany dla ogólnego ciągłego semimartyngału $Z_t = Z_0 + M_t + A_t$, gdzie $M_t$ jest ciągłym martyngałem lokalnym, a $A_t$ procesem o skończonym wahaniu. Jeśli $f$ jest funkcją klasy $C^2$, to $f(Z_t)$ również jest semimartyngałem i zachodzi:
+$$
+f(Z_t) = f(Z_0) + \int_0^t f'(Z_s) dZ_s + \frac{1}{2} \int_0^t f''(Z_s) d\langle M \rangle_s
+$$
+gdzie $\langle M \rangle_s$ to wariacja kwadratowa procesu $M_s$.
+
+**Wzór Itô dla procesu Itô**
+
+Niech $X_t$ będzie procesem Itô danym przez $dX_t = b_t dt + \sigma_t dW_t$, a $f(t, x)$ będzie gładką funkcją (klasy $C^{1,2}$). Wówczas proces $Y_t = f(t, X_t)$ również jest procesem Itô, a jego różniczka stochastyczna wynosi:
+$$
+dY_t = \frac{\partial f}{\partial t}(t, X_t) dt + \frac{\partial f}{\partial x}(t, X_t) dX_t + \frac{1}{2} \frac{\partial^2 f}{\partial x^2}(t, X_t) (dX_t)^2
+$$
+Stosując nieformalne reguły rachunku Itô: $(dt)^2=0$, $dt dW_t = 0$ oraz $(dW_t)^2 = dt$, i podstawiając $dX_t$, otrzymujemy pełną postać wzoru:
+$$
+df(t, X_t) = \left( \frac{\partial f}{\partial t} + b_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dW_t
+$$
+Pojawienie się członu z drugą pochodną ($\frac{\partial^2 f}{\partial x^2}$) jest kluczową różnicą w stosunku do klasycznego rachunku różniczkowego i stanowi sedno rachunku Itô.
+
+**Wzór Itô w wersji wielowymiarowej**
+
+Wzór ten można uogólnić na funkcje wielu procesów stochastycznych. Dla funkcji $f$ i $d$-wymiarowego procesu $Z_t = (Z_t^{(1)}, ..., Z_t^{(d)})$, wzór przyjmuje postać (Twierdzenie 13.2):
+$$
+df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1}{2} \sum_{i,j=1}^d \frac{\partial^2 f}{\partial x_i \partial x_j}(Z_t) d\langle M^{(i)}, M^{(j)} \rangle_t
+$$
+gdzie $d\langle M^{(i)}, M^{(j)} \rangle_t$ jest kowariacją kwadratową części martyngałowych procesów $Z^{(i)}$ i $Z^{(j)}$.
 
 <br>
 
