@@ -226,7 +226,7 @@ window.Quarto = {
   <li><a href="#metody-rungego-kutty-do-rozwiązywania-równań-różniczkowych." id="toc-metody-rungego-kutty-do-rozwiązywania-równań-różniczkowych." class="nav-link" data-scroll-target="#metody-rungego-kutty-do-rozwiązywania-równań-różniczkowych.">2. Metody Rungego-Kutty do rozwiązywania równań różniczkowych.</a></li>
   <li><a href="#generatory-liczb-pseudolosowych-i-ich-zastosowanie-do-obliczania-całek-oznaczonych-metodą-monte-carlo." id="toc-generatory-liczb-pseudolosowych-i-ich-zastosowanie-do-obliczania-całek-oznaczonych-metodą-monte-carlo." class="nav-link" data-scroll-target="#generatory-liczb-pseudolosowych-i-ich-zastosowanie-do-obliczania-całek-oznaczonych-metodą-monte-carlo.">3. Generatory liczb pseudolosowych i ich zastosowanie do obliczania całek oznaczonych metodą Monte-Carlo.</a></li>
   </ul></li>
-  <li><a href="#podstawy-teorii-sterowania" id="toc-podstawy-teorii-sterowania" class="nav-link" data-scroll-target="#podstawy-teorii-sterowania">6. Podstawy teorii sterowania</a>
+  <li><a href="#podstawy-teorii-sterowania-notatki-na-podstawie-książki" id="toc-podstawy-teorii-sterowania-notatki-na-podstawie-książki" class="nav-link" data-scroll-target="#podstawy-teorii-sterowania-notatki-na-podstawie-książki">6. Podstawy teorii sterowania Notatki na podstawie książki</a>
   <ul class="collapse">
   <li><a href="#sposoby-tworzenia-modeli-matematycznych-obiektów-lub-procesów-sterowania.-identyfikacja-procesu-sterowania." id="toc-sposoby-tworzenia-modeli-matematycznych-obiektów-lub-procesów-sterowania.-identyfikacja-procesu-sterowania." class="nav-link" data-scroll-target="#sposoby-tworzenia-modeli-matematycznych-obiektów-lub-procesów-sterowania.-identyfikacja-procesu-sterowania.">1. Sposoby tworzenia modeli matematycznych obiektów lub procesów sterowania. Identyfikacja procesu sterowania.</a></li>
   <li><a href="#charakterystyka-statyczna-i-charakterystyka-dynamiczna-procesu.-przykłady-obu-charakterystyk-dla-wybranego-procesu." id="toc-charakterystyka-statyczna-i-charakterystyka-dynamiczna-procesu.-przykłady-obu-charakterystyk-dla-wybranego-procesu." class="nav-link" data-scroll-target="#charakterystyka-statyczna-i-charakterystyka-dynamiczna-procesu.-przykłady-obu-charakterystyk-dla-wybranego-procesu.">2. Charakterystyka statyczna i charakterystyka dynamiczna procesu. Przykłady obu charakterystyk dla wybranego procesu.</a></li>
@@ -385,11 +385,24 @@ f(\lambda) &amp; f'(\lambda) &amp; \frac{f''(\lambda)}{2!} &amp; \cdots &amp; \f
 <h3 class="anchored" data-anchor-id="wybrane-metody-dekompozycji-macierzy.">3. Wybrane metody dekompozycji macierzy.</h3>
 <ul>
 <li>Rozkład <span class="math inline">\(LU\)</span></li>
+</ul>
+<p><img src="images/lu.png" class="img-fluid"></p>
+<ul>
 <li>Rozkład <span class="math inline">\(QR\)</span></li>
+</ul>
+<p><img src="images/qr.png" class="img-fluid"></p>
+<ul>
 <li>Rozkład <span class="math inline">\(SVD\)</span></li>
+</ul>
+<p><img src="images/svd.png" class="img-fluid"></p>
+<ul>
 <li>Rozkład <span class="math inline">\(Shura\)</span></li>
+</ul>
+<p><img src="images/schura.png" class="img-fluid"></p>
+<ul>
 <li>Rozkłąd <span class="math inline">\(Choleskiego\)</span></li>
 </ul>
+<p><img src="images/choleskiego.png" class="img-fluid"></p>
 <p><br></p>
 </section>
 </section>
@@ -443,7 +456,12 @@ f(\lambda) &amp; f'(\lambda) &amp; \frac{f''(\lambda)}{2!} &amp; \cdots &amp; \f
 <h3 class="anchored" data-anchor-id="problem-zanikającego-i-eksplodującego-gradientu-w-modelach-rekurencyjnych.">2. Problem zanikającego i eksplodującego gradientu w modelach rekurencyjnych.</h3>
 <p>Problemy zanikającegi i eksplodującego gradientu można przedstawić w następujący sposób:</p>
 <ul>
-<li><p><strong>Zanikający gradient</strong>: Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.</p></li>
+<li><strong>Zanikający gradient</strong>: Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.</li>
+</ul>
+<p>Aby zminimalizować ten problem stosuje się techniki takie jak:</p>
+<ul>
+<li><p>Mniejszy <em>batch size</em> podczas uczenia sieci;</p></li>
+<li><p>W przypadku sieci</p></li>
 <li><p><strong>Eksplodujący gradient</strong>: Gradienty stają się zaskakująco duże, przez co następują duże aktualizacje wag (powtarzające się mnożenie dużych wag) każdego węzła w głebokiej sieci neuronowej</p></li>
 </ul>
 </section>
@@ -535,14 +553,110 @@ f(\lambda) &amp; f'(\lambda) &amp; \frac{f''(\lambda)}{2!} &amp; \cdots &amp; \f
 <h2 class="anchored" data-anchor-id="wybrane-problemy-teorii-niezawodności">4. Wybrane problemy teorii niezawodności</h2>
 <section id="rozkłady-statystyczne-stosowane-w-analizie-niezawodności." class="level3">
 <h3 class="anchored" data-anchor-id="rozkłady-statystyczne-stosowane-w-analizie-niezawodności.">1. Rozkłady statystyczne stosowane w analizie niezawodności.</h3>
-<ol type="1">
-<li><p>Rozkład wykładniczy (Exponential distribution)</p></li>
-<li><p>Rozkład Weibulla (Weibull distribution)</p></li>
-<li><p>Rozkład normalny (Normal / Gaussian distribution)</p></li>
-<li><p>Rozkład Gamma</p></li>
-<li><p>Rozkład Rayleigha</p></li>
-<li><p>Rozkład Bernoulliego / dwumianowy / Poissona</p></li>
-</ol>
+<section id="rozkład-wykładniczy" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-wykładniczy">1. Rozkład wykładniczy</h4>
+<p>Funkcja gęstości prawdopodobieństwa dla zmiennej losowej <span class="math inline">\(x \ge 0\)</span>.</p>
+<ul>
+<li><strong>Parametr:</strong> <span class="math inline">\(\lambda &gt; 0\)</span> (parametr częstości, <em>rate parameter</em>)</li>
+</ul>
+<p><span class="math display">\[
+f(x; \lambda) = \lambda e^{-\lambda x}
+\]</span></p>
+</section>
+<section id="rozkład-weibulla" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-weibulla">2. Rozkład Weibulla</h4>
+<p>Funkcja gęstości prawdopodobieństwa dla zmiennej losowej <span class="math inline">\(x \ge 0\)</span>.</p>
+<ul>
+<li><strong>Parametry:</strong>
+<ul>
+<li><span class="math inline">\(k &gt; 0\)</span> (parametr kształtu, <em>shape parameter</em>)</li>
+<li><span class="math inline">\(\lambda &gt; 0\)</span> (parametr skali, <em>scale parameter</em>)</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+f(x; k, \lambda) = \frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k-1} e^{-(x/\lambda)^k}
+\]</span></p>
+<p><em>Uwaga: Gdy <span class="math inline">\(k=1\)</span>, rozkład Weibulla sprowadza się do rozkładu wykładniczego z parametrem <span class="math inline">\(\lambda\)</span>.</em></p>
+</section>
+<section id="rozkład-normalny" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-normalny">3. Rozkład normalny</h4>
+<p>Funkcja gęstości prawdopodobieństwa (PDF) dla zmiennej losowej <span class="math inline">\(x \in (-\infty, \infty)\)</span>.</p>
+<ul>
+<li><strong>Parametry:</strong>
+<ul>
+<li><span class="math inline">\(\mu\)</span> (wartość oczekiwana, <em>mean</em>)</li>
+<li><span class="math inline">\(\sigma^2 &gt; 0\)</span> (wariancja, <em>variance</em>), gdzie <span class="math inline">\(\sigma\)</span> to odchylenie standardowe</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{ - \frac{1}{2} \left( \frac{x-\mu}{\sigma} \right)^2 }
+\]</span></p>
+</section>
+<section id="rozkład-gamma" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-gamma">4. Rozkład Gamma</h4>
+<p>Funkcja gęstości prawdopodobieństwa dla zmiennej losowej <span class="math inline">\(x \ge 0\)</span>.</p>
+<ul>
+<li><strong>Parametry:</strong>
+<ul>
+<li><span class="math inline">\(\alpha &gt; 0\)</span> (parametr kształtu, <em>shape parameter</em>)</li>
+<li><span class="math inline">\(\beta &gt; 0\)</span> (parametr częstości, <em>rate parameter</em>)</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}
+\]</span></p>
+<p>gdzie <span class="math inline">\(\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}dt\)</span> to funkcja Gamma.</p>
+</section>
+<section id="rozkład-rayleigha" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-rayleigha">5. Rozkład Rayleigha</h4>
+<p>Funkcja gęstości prawdopodobieństwa dla zmiennej losowej <span class="math inline">\(x \ge 0\)</span>.</p>
+<ul>
+<li><strong>Parametr:</strong> <span class="math inline">\(\sigma &gt; 0\)</span> (parametr skali, <em>scale parameter</em>)</li>
+</ul>
+<p><span class="math display">\[
+f(x; \sigma) = \frac{x}{\sigma^2} e^{-x^2 / (2\sigma^2)}
+\]</span></p>
+<p><em>Uwaga: Jest to szczególny przypadek rozkładu Weibulla dla <span class="math inline">\(k=2\)</span>.</em></p>
+<hr>
+</section>
+<section id="rozkład-bernoulliego" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-bernoulliego">Rozkład Bernoulliego</h4>
+<p>Opisuje wynik pojedynczej próby, która może zakończyć się sukcesem (1) lub porażką (0).</p>
+<ul>
+<li><strong>Parametr:</strong> <span class="math inline">\(p \in [0, 1]\)</span> (prawdopodobieństwo sukcesu)</li>
+<li><strong>Wartości:</strong> <span class="math inline">\(k \in \{0, 1\}\)</span></li>
+</ul>
+<p><span class="math display">\[
+P(X=k) = p^k (1-p)^{1-k}
+\]</span></p>
+</section>
+<section id="rozkład-dwumianowy" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-dwumianowy">Rozkład dwumianowy</h4>
+<p>Opisuje liczbę sukcesów (<span class="math inline">\(k\)</span>) w <span class="math inline">\(n\)</span> niezależnych próbach Bernoulliego.</p>
+<ul>
+<li><strong>Parametry:</strong>
+<ul>
+<li><span class="math inline">\(n \ge 0\)</span> (liczba prób, liczba całkowita)</li>
+<li><span class="math inline">\(p \in [0, 1]\)</span> (prawdopodobieństwo sukcesu w pojedynczej próbie)</li>
+</ul></li>
+<li><strong>Wartości:</strong> <span class="math inline">\(k \in \{0, 1, 2, ..., n\}\)</span></li>
+</ul>
+<p><span class="math display">\[
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+\]</span></p>
+<p>gdzie <span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span> to symbol Newtona.</p>
+</section>
+<section id="rozkład-poissona" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-poissona">Rozkład Poissona</h4>
+<p>Opisuje liczbę zdarzeń w ustalonym przedziale czasu lub przestrzeni, jeśli zdarzenia te zachodzą ze stałą średnią częstotliwością.</p>
+<ul>
+<li><strong>Parametr:</strong> <span class="math inline">\(\lambda &gt; 0\)</span> (średnia liczba zdarzeń w przedziale)</li>
+<li><strong>Wartości:</strong> <span class="math inline">\(k \in \{0, 1, 2, ...\}\)</span></li>
+</ul>
+<p><span class="math display">\[
+P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}
+\]</span></p>
+</section>
 </section>
 <section id="modele-szeregowe-równoległe-i-mieszane-obiektów-technicznych." class="level3">
 <h3 class="anchored" data-anchor-id="modele-szeregowe-równoległe-i-mieszane-obiektów-technicznych.">2. Modele szeregowe, równoległe i mieszane obiektów technicznych.</h3>
@@ -697,18 +811,137 @@ x_n = (x_{n-l} + n_{n-k})(\text{mod} m)
 </ul></li>
 </ul>
 <p><br></p>
+<p>Metoda Monte Carlo to technika numeryczna służąca do przybliżania wartości całek oznaczonych. Jest szczególnie użyteczna w przypadkach, gdy: * Funkcja podcałkowa jest bardzo skomplikowana. * Obszar całkowania ma nieregularny kształt. * Całka jest wielowymiarowa (np. całka podwójna lub potrójna), co sprawia, że tradycyjne metody analityczne lub numeryczne (jak metoda trapezów czy Simpsona) stają się nieefektywne.</p>
+<p><strong>Główna idea:</strong> Zamiast analitycznie obliczać pole pod wykresem funkcji, “strzelamy” losowo punktami w zdefiniowany obszar i na podstawie proporcji trafień szacujemy wynik.</p>
+<section id="generatory-liczb-pseudolosowych" class="level4">
+<h4 class="anchored" data-anchor-id="generatory-liczb-pseudolosowych">2. Generatory liczb pseudolosowych</h4>
+<p>Generatory liczb pseudolosowych to algorytmy, które produkują sekwencje liczb naśladujące właściwości liczb losowych. W kontekście całkowania potrzebujemy generatora, który potrafi tworzyć liczby z <strong>rozkładu jednostajnego</strong> (każda liczba w danym zakresie ma takie samo prawdopodobieństwo wylosowania).</p>
+<p>Służą one do generowania współrzędnych <code>(x, y)</code> dla każdego z losowych “strzałów”. Jakość i statystyczne właściwości generatora (np. brak korelacji między kolejnymi liczbami) mają bezpośredni wpływ na dokładność uzyskanej aproksymacji całki.</p>
+<p>Załóżmy, że chcemy obliczyć całkę oznaczoną: <span class="math display">\[ I = \int_a^b f(x) dx \]</span></p>
+<p>Reprezentuje ona pole powierzchni pod krzywą <span class="math inline">\(y = f(x)\)</span> na przedziale od <span class="math inline">\(x=a\)</span> do <span class="math inline">\(x=b\)</span>.</p>
+<p><strong>Algorytm postępowania:</strong></p>
+<ol type="1">
+<li><p><strong>Określenie obszaru próbkowania:</strong> Tworzymy prostokąt, który całkowicie zawiera interesujący nas obszar pod wykresem.</p>
+<ul>
+<li>Szerokość prostokąta to długość przedziału całkowania: <span class="math inline">\(w = b - a\)</span>.</li>
+<li>Wysokość prostokąta <span class="math inline">\(M\)</span> musi być równa lub większa od maksymalnej wartości funkcji <span class="math inline">\(f(x)\)</span> na przedziale <span class="math inline">\([a, b]\)</span>. Czyli <span class="math inline">\(M \ge \max_{x \in [a,b]} f(x)\)</span>.</li>
+<li>Pole tego prostokąta wynosi: <span class="math inline">\(A_{\text{prostokąt}} = (b-a) \cdot M\)</span>.</li>
+</ul></li>
+<li><p><strong>Losowe próbkowanie:</strong> Przy użyciu generatora liczb pseudolosowych generujemy dużą liczbę <span class="math inline">\(N\)</span> losowych punktów <span class="math inline">\((x_i, y_i)\)</span> o współrzędnych równomiernie rozłożonych wewnątrz prostokąta:</p>
+<ul>
+<li><span class="math inline">\(x_i\)</span> jest losowane z przedziału <span class="math inline">\([a, b]\)</span>.</li>
+<li><span class="math inline">\(y_i\)</span> jest losowane z przedziału <span class="math inline">\([0, M]\)</span>.</li>
+</ul></li>
+<li><p><strong>Zliczanie “trafień”:</strong> Dla każdego wygenerowanego punktu <span class="math inline">\((x_i, y_i)\)</span> sprawdzamy, czy znajduje się on <strong>pod wykresem funkcji</strong> <span class="math inline">\(f(x)\)</span>. Warunek ten jest spełniony, jeśli: <span class="math display">\[ y_i \le f(x_i) \]</span> Zliczamy wszystkie punkty, które spełniają ten warunek. Nazwijmy tę liczbę <span class="math inline">\(k\)</span>.</p></li>
+<li><p><strong>Aproksymacja pola:</strong> Założenie metody Monte Carlo mówi, że stosunek pola pod wykresem do pola całego prostokąta jest w przybliżeniu równy stosunkowi liczby punktów pod wykresem (<span class="math inline">\(k\)</span>) do całkowitej liczby wylosowanych punktów (<span class="math inline">\(N\)</span>).</p>
+<p><span class="math display">\[ \frac{\text{Pole pod wykresem}}{\text{Pole prostokąta}} \approx \frac{k}{N} \]</span></p>
+<p>Przekształcając ten wzór, otrzymujemy przybliżoną wartość całki:</p>
+<p><span class="math display">\[ I \approx \frac{k}{N} \cdot \text{Pole prostokąta} \]</span></p>
+<p>Co daje: <span class="math display">\[ \int_a^b f(x) dx \approx \frac{k}{N} \cdot (b-a) \cdot M \]</span></p></li>
+</ol>
+<p>#### 4. Właściwości i uwagi</p>
+<ul>
+<li><strong>Zbieżność:</strong> Dokładność metody rośnie wraz ze wzrostem liczby prób <span class="math inline">\(N\)</span>. Błąd statystyczny aproksymacji jest proporcjonalny do <span class="math inline">\(\frac{1}{\sqrt{N}}\)</span>, co oznacza, że aby dziesięciokrotnie zwiększyć dokładność, trzeba stukrotnie zwiększyć liczbę losowań.</li>
+<li><strong>Zalety:</strong>
+<ul>
+<li>Prostota implementacji.</li>
+<li>Niezwykła skuteczność przy całkach wielowymiarowych (gdzie inne metody zawodzą z powodu tzw. “klątwy wymiarowości”).</li>
+<li>Łatwość adaptacji do nieregularnych i złożonych obszarów całkowania.</li>
+</ul></li>
+<li><strong>Wady:</strong>
+<ul>
+<li>Wolna zbieżność w porównaniu do deterministycznych metod numerycznych dla prostych całek jednowymiarowych.</li>
+<li>Wynik jest probabilistyczny – każde uruchomienie algorytmu da nieco inny, choć zbliżony, rezultat.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="podstawy-teorii-sterowania" class="level2">
-<h2 class="anchored" data-anchor-id="podstawy-teorii-sterowania">6. Podstawy teorii sterowania</h2>
+</section>
+<section id="podstawy-teorii-sterowania-notatki-na-podstawie-książki" class="level2">
+<h2 class="anchored" data-anchor-id="podstawy-teorii-sterowania-notatki-na-podstawie-książki">6. Podstawy teorii sterowania <a href="http://bc.tu.kielce.pl/440/1/Stefanski_MPI-155.pdf">Notatki na podstawie książki</a></h2>
 <section id="sposoby-tworzenia-modeli-matematycznych-obiektów-lub-procesów-sterowania.-identyfikacja-procesu-sterowania." class="level3">
 <h3 class="anchored" data-anchor-id="sposoby-tworzenia-modeli-matematycznych-obiektów-lub-procesów-sterowania.-identyfikacja-procesu-sterowania.">1. Sposoby tworzenia modeli matematycznych obiektów lub procesów sterowania. Identyfikacja procesu sterowania.</h3>
+<p>Model matematyczny jest zdefiniowany jako <strong>zależność sygnałów wyjściowych od sygnałów wejściowych, wyrażona w postaci równań matematycznych</strong> (s. 13).</p>
+<p><strong>Sposoby tworzenia modeli matematycznych to (s. 52):</strong></p>
+<ol type="1">
+<li><strong>Równania różniczkowe i różnicowe:</strong>
+<ul>
+<li><strong>Równania różniczkowe</strong> opisują obiekty ciągłe. Ogólna postać dla obiektu liniowego, stacjonarnego i jednowymiarowego jest przedstawiona na s. 52.</li>
+<li><strong>Równania różnicowe</strong> są odpowiednikiem dla układów dyskretnych, gdzie czas ma wartość dyskretną (s. 53).</li>
+</ul></li>
+<li><strong>Transmitancje operatorowe:</strong>
+<ul>
+<li>Dla <strong>układów ciągłych</strong> jest to stosunek transformaty Laplace’a sygnału wyjściowego Y(s) do transformaty Laplace’a sygnału wejściowego U(s), przy zerowych warunkach początkowych (s. 56).</li>
+<li>Dla <strong>układów dyskretnych</strong> jest to stosunek transformaty Z sygnału wyjściowego Y(z) do transformaty sygnału wejściowego U(z) (s. 58).</li>
+</ul></li>
+<li><strong>Równania stanu:</strong>
+<ul>
+<li>Opisują dynamikę układu za pomocą układu równań różniczkowych (dla układów ciągłych) lub różnicowych (dla układów dyskretnych) pierwszego rzędu. Model ten składa się z <strong>równania stanu</strong> (opisującego dynamikę wewnętrznych zmiennych stanu) i <strong>równania wyjścia</strong> (wiążącego zmienne stanu z sygnałem wyjściowym) (s. 63-65).</li>
+</ul></li>
+<li><strong>Charakterystyki czasowe i częstotliwościowe:</strong>
+<ul>
+<li>Chociaż są to głównie narzędzia analizy, mogą również służyć jako forma modelu matematycznego, zwłaszcza gdy są wyznaczane eksperymentalnie. Przykłady to <strong>odpowiedź skokowa h(t)</strong>, <strong>odpowiedź impulsowa g(t)</strong> (s. 68) oraz charakterystyki częstotliwościowe (np. <strong>amplitudowo-fazowa</strong>) (s. 72).</li>
+</ul></li>
+</ol>
+<p><strong>Identyfikacja procesu sterowania (s. 84):</strong></p>
+<ol type="1">
+<li><strong>Analiza teoretyczna:</strong> Budowa modelu na podstawie znanych praw fizycznych rządzących procesem.</li>
+<li><strong>Analiza eksperymentalna:</strong> Określenie modelu na podstawie obserwacji “odpowiedzi układu na […] typowe wymuszenia” (s. 85). Konkretnym przykładem jest <strong>“Eksperymentalne wyznaczanie charakterystyk częstotliwościowych”</strong> (s. 81), które polega na rejestrowaniu odpowiedzi obiektu na sygnał harmoniczny o różnej częstotliwości i na tej podstawie budowaniu modelu. Innym przykładem jest wyznaczanie charakterystyki statycznej przez pomiary w stanie ustalonym (s. 53).</li>
+</ol>
+<hr>
 </section>
 <section id="charakterystyka-statyczna-i-charakterystyka-dynamiczna-procesu.-przykłady-obu-charakterystyk-dla-wybranego-procesu." class="level3">
 <h3 class="anchored" data-anchor-id="charakterystyka-statyczna-i-charakterystyka-dynamiczna-procesu.-przykłady-obu-charakterystyk-dla-wybranego-procesu.">2. Charakterystyka statyczna i charakterystyka dynamiczna procesu. Przykłady obu charakterystyk dla wybranego procesu.</h3>
+<p><strong>Charakterystyka statyczna:</strong></p>
+<p>Jest to <strong>zależność sygnału wyjściowego od wejściowego w stanie ustalonym</strong> (s. 53). Wyznacza się ją z równania różniczkowego poprzez przyrównanie wszystkich pochodnych do zera. W przypadku opisu za pomocą transmitancji operatorowej G(s), charakterystykę statyczną uzyskuje się, przyjmując s = 0 (s. 57). Definiuje ona statyczne wzmocnienie obiektu.</p>
+<p><strong>Charakterystyka dynamiczna:</strong></p>
+<p>Charakterystyka dynamiczna pokazuje, jak układ zachowuje się w czasie w odpowiedzi na zmianę sygnału wejściowego. Główne formy opisu właściwości dynamicznych to (s. 52, 68, 72):</p>
+<ul>
+<li><strong>Charakterystyki czasowe:</strong> Pokazują odpowiedź układu w dziedzinie czasu. Najważniejsze z nich:
+<ul>
+<li><strong>Odpowiedź skokowa h(t):</strong> Odpowiedź na sygnał jednostkowy 1(t).</li>
+<li><strong>Odpowiedź impulsowa g(t):</strong> Odpowiedź na impuls Diraca δ(t).</li>
+</ul></li>
+<li><strong>Charakterystyki częstotliwościowe:</strong> Opisują zachowanie układu w stanie ustalonym przy wymuszeniu sinusoidalnym o różnej częstotliwości. Przykłady to charakterystyka amplitudowo-fazowa (wykres Nyquista) oraz logarytmiczne charakterystyki amplitudowa i fazowa (wykresy Bodego).</li>
+</ul>
+<p><strong>Przykład dla wybranego procesu (Człon inercyjny pierwszego rzędu, s. 112):</strong></p>
+<ul>
+<li><strong>Równanie różniczkowe:</strong> <span class="math inline">\(T * \frac{dy(t)}{dt} + y(t) = K * u(t)\)</span></li>
+<li><strong>Transmitancja:</strong> <span class="math inline">\(G(s) = \frac{K}{(Ts + 1)}\)</span></li>
+</ul>
+<ol type="1">
+<li><strong>Charakterystyka statyczna:</strong>
+<ul>
+<li>Z równania różniczkowego: W stanie ustalonym <span class="math inline">\(\frac{dy(t)}{dt} = 0\)</span>, co daje <span class="math inline">\(y(t) = K * u(t)\)</span>. Jest to zależność liniowa, a jej nachylenie <span class="math inline">\(K\)</span> to wzmocnienie statyczne.</li>
+<li>Z transmitancji: <span class="math inline">\(G(0) = \frac{K}{(T*0 + 1)}= K\)</span>.</li>
+</ul></li>
+<li><strong>Charakterystyki dynamiczne:</strong>
+<ul>
+<li><strong>Odpowiedź skokowa (czasowa):</strong> <span class="math inline">\(h(t) = K(1 - e^{(\frac{-t}{T})})\)</span>. Jest to narastająca funkcja wykładnicza, która asymptotycznie dąży do wartości <span class="math inline">\(K\)</span> (pokazana na Rys. 4.11).</li>
+<li><strong>Charakterystyka amplitudowo-fazowa (częstotliwościowa):</strong> Jest to półokrąg o średnicy <span class="math inline">\(K\)</span> w prawej półpłaszczyźnie zespolonej (pokazana na Rys. 4.11).</li>
+<li><strong>Logarytmiczna charakterystyka amplitudowa:</strong> Dla małych częstotliwości jest to linia pozioma na poziomie <span class="math inline">\(20logK\)</span>, a dla dużych częstotliwości opada z nachyleniem -20 dB/dekadę (pokazana na Rys. 4.11).</li>
+</ul></li>
+</ol>
+<hr>
 </section>
 <section id="metody-ograniczania-skutków-niepożądanego-oddziaływania-na-proces." class="level3">
 <h3 class="anchored" data-anchor-id="metody-ograniczania-skutków-niepożądanego-oddziaływania-na-proces.">3. Metody ograniczania skutków niepożądanego oddziaływania na proces.</h3>
+<p>Niepożądane oddziaływania na proces są <strong>“zakłóceniami”</strong> (s. 12). Główną metodą ograniczania ich skutków jest zastosowanie <strong>sterowania w układzie zamkniętym, czyli regulacji ze sprzężeniem zwrotnym</strong> (s. 15).</p>
+<p>Mechanizm działania tej metody jest następujący (s. 15-17):</p>
+<ol type="1">
+<li><strong>Pomiar sygnału wyjściowego:</strong> Wartość regulowanej wielkości wyjściowej <span class="math inline">\(y(t)\)</span> jest stale mierzona.</li>
+<li><strong>Porównanie z wartością zadaną:</strong> Zmierzona wartość jest porównywana z wartością pożądaną (zadaną) <span class="math inline">\(w(t)\)</span>. Różnica tych sygnałów <span class="math inline">\(e(t) = w(t) - y(t)\)</span> nazywana jest <strong>uchybem regulacji</strong>.</li>
+<li><strong>Działanie regulatora:</strong> Uchyb <span class="math inline">\(e(t)\)</span> jest wprowadzany do <strong>regulatora</strong>, który na jego podstawie generuje odpowiedni <strong>sygnał sterujący <span class="math inline">\(u(t)\)</span></strong>. Sygnał ten ma na celu takie oddziaływanie na obiekt, aby zminimalizować uchyb, a tym samym skompensować wpływ zakłóceń.</li>
+</ol>
 <p><br></p>
 </section>
 </section>
@@ -776,7 +1009,7 @@ x_n = (x_{n-l} + n_{n-k})(\text{mod} m)
 <p><strong>Właściwości i sposób oszacowania:</strong></p>
 <ul>
 <li><p><strong>Wydajność i równoważenie obciążenia:</strong> System ten jest <strong>z natury mniej wydajny</strong> niż system z jedną kolejką. Może wystąpić sytuacja, w której jeden serwer jest bezczynny (jego kolejka jest pusta), podczas gdy w innych kolejkach klienci oczekują na obsługę. Równoważenie obciążenia jest niedoskonałe i zależy od decyzji klientów.</p></li>
-<li><p><strong>Złożoność analizy:</strong> Analiza jest znacznie prostsza, ponieważ system można traktować jako <strong><code>$c$</code> niezależnych systemów M/M/1</strong>.</p>
+<li><p><strong>Złożoność analizy:</strong> Analiza jest znacznie prostsza, ponieważ system można traktować jako <strong><span class="math inline">\(c\)</span> niezależnych systemów M/M/1</strong>.</p>
 <ul>
 <li>Zakładając, że strumień wejściowy <span class="math inline">\(\lambda\)</span> jest równomiernie rozłożony na <span class="math inline">\(c\)</span> kolejek, każda z nich otrzymuje strumień zgłoszeń o natężeniu <span class="math inline">\(\lambda_i = \lambda / c\)</span>.</li>
 <li>Dla każdej z tych kolejek stosuje się proste wzory dla systemu <strong>M/M/1</strong>:
@@ -806,15 +1039,15 @@ x_n = (x_{n-l} + n_{n-k})(\text{mod} m)
 <ul>
 <li><strong>Złożoność analizy:</strong> Sposób oszacowania silnie zależy od założeń dotyczących buforów i rozkładów czasów obsługi.
 <ul>
-<li><strong>Przypadek prosty (Twierdzenie Burke’a):</strong> Jeśli każdy etap to system M/M/1 z <strong>nieskończonym buforem</strong>, to wyjściowy strumień zgłoszeń z każdego etapu jest również procesem Poissona o tym samym natężeniu <code>$\lambda$</code>. Dzięki temu cały system można analizować jako <strong>serię niezależnych systemów M/M/1</strong>.
+<li><strong>Przypadek prosty (Twierdzenie Burke’a):</strong> Jeśli każdy etap to system M/M/1 z <strong>nieskończonym buforem</strong>, to wyjściowy strumień zgłoszeń z każdego etapu jest również procesem Poissona o tym samym natężeniu <span class="math inline">\(\lambda\)</span>. Dzięki temu cały system można analizować jako <strong>serię niezależnych systemów M/M/1</strong>.
 <ul>
 <li><strong>Średni czas pobytu w całym systemie (<span class="math inline">\(W_{\text{total}}\)</span>)</strong> jest po prostu sumą średnich czasów pobytu na każdym etapie: <span class="math inline">\(W_{\text{total}} = W_1 + W_2 + \dots + W_c\)</span>.</li>
 <li><strong>Średnia liczba klientów w systemie (<span class="math inline">\(L_{\text{total}}\)</span>)</strong> to suma średnich liczb klientów na każdym etapie: <span class="math inline">\(L_{\text{total}} = L_1 + L_2 + \dots + L_c\)</span>.</li>
 </ul></li>
 <li><strong>Przypadek złożony (Skończone bufory):</strong> Jest to sytuacja znacznie bardziej realistyczna i trudniejsza analitycznie.
 <ul>
-<li><strong>Zjawisko blokowania:</strong> Jeśli bufor między serwerem <code>$i$</code> a <code>$i+1$</code> jest pełny, serwer <code>$i$</code> po zakończeniu obsługi musi czekać (jest blokowany), aż zwolni się miejsce w buforze. To drastycznie obniża przepustowość całego systemu.</li>
-<li><strong>Wąskie gardło (Bottleneck):</strong> Przepustowość całego systemu jest ograniczona przez najwolniejszy etap (serwer o najniższym tempie obsługi <code>$\mu$</code>). Ten etap nazywany jest “wąskim gardłem”.</li>
+<li><strong>Zjawisko blokowania:</strong> Jeśli bufor między serwerem <span class="math inline">\(i\)</span> a <span class="math inline">\(i+1\)</span> jest pełny, serwer <span class="math inline">\(i\)</span> po zakończeniu obsługi musi czekać (jest blokowany), aż zwolni się miejsce w buforze. To drastycznie obniża przepustowość całego systemu.</li>
+<li><strong>Wąskie gardło (Bottleneck):</strong> Przepustowość całego systemu jest ograniczona przez najwolniejszy etap (serwer o najniższym tempie obsługi <span class="math inline">\(\mu\)</span>). Ten etap nazywany jest “wąskim gardłem”.</li>
 <li><strong>Metody analizy:</strong> Dokładne rozwiązania analityczne są rzadkie. Do oszacowania właściwości takich systemów najczęściej wykorzystuje się <strong>symulacje komputerowe</strong> lub metody aproksymacyjne.</li>
 </ul></li>
 </ul></li>
@@ -1095,10 +1328,107 @@ q_1 &amp; q_2 &amp; q_3 &amp; \cdots \\
 <h2 class="anchored" data-anchor-id="stochastyczne-równania-różniczkowe">10. Stochastyczne równania różniczkowe</h2>
 <section id="całki-stochastyczne-ich-rodzaje-i-definicje." class="level3">
 <h3 class="anchored" data-anchor-id="całki-stochastyczne-ich-rodzaje-i-definicje.">1. Całki stochastyczne: ich rodzaje i definicje.</h3>
+<p>Całka stochastyczna jest narzędziem analizy stochastycznej, uogólniającym pojęcie całki deterministycznej (np. Riemanna-Stieltjesa) na przypadki, w których funkcja, po której całkujemy, jest procesem stochastycznym. Klasyczne teorie całkowania zawodzą, ponieważ trajektorie wielu ważnych procesów, jak proces Wienera, mają <strong>nieskończone wahanie</strong> co zostało wspomniane w rozdziale 7.3 <a href="https://mst.mimuw.edu.pl/wyklady/was/wyklad.pdf">skryptu</a>, co uniemożliwia zdefiniowanie dla nich całki w sensie Riemanna-Stieltjesa.</p>
+<p>Najważniejszymi rodzajami całek stochastycznych są całka Itô i całka Stratonowicza.</p>
+<section id="a-całka-itô" class="level4">
+<h4 class="anchored" data-anchor-id="a-całka-itô">a) Całka Itô</h4>
+<p>Całka Itô jest najczęściej stosowaną całką stochastyczną, głównie ze względu na jej kluczową własność: całka z procesu jest <a href="https://www.deltami.edu.pl/media/articles/2007/05/delta-2007-05-martyngaly.pdf">martyngałem</a>. Jej konstrukcja, opisana w rozdziale 8 <a href="https://mst.mimuw.edu.pl/wyklady/was/wyklad.pdf">skryptu</a>, przebiega w kilku krokach, analogicznie do konstrukcji całki Lebesgue’a.</p>
+<p><strong>Krok 1: Definicja dla procesów prostych (elementarnych)</strong></p>
+<p>Najpierw definiuje się całkę dla klasy tzw. <strong>procesów elementarnych</strong> (lub prostych, w skrypcie “prognozowalnych”), które są stałe na przedziałach czasowych. Proces elementarny <span class="math inline">\(X_t\)</span> ma postać: <span class="math display">\[
+X_t = \sum_{k=1}^{m} \xi_{k-1} \mathbb{I}_{(t_{k-1}, t_k]}(t)
+\]</span> gdzie <span class="math inline">\(\xi_{k-1}\)</span> jest zmienną losową mierzalną względem <span class="math inline">\(\sigma\)</span>-ciała <span class="math inline">\(\mathcal{F}_{t_{k-1}}\)</span> (informacji dostępnej do chwili <span class="math inline">\(t_{k-1}\)</span>). Definicja całki Itô dla takiego procesu względem procesu Wienera <span class="math inline">\(W_t\)</span> jest naturalna: <span class="math display">\[
+\int_0^t X_s dW_s := \sum_{k=1}^{m} \xi_{k-1} (W_{t_k \land t} - W_{t_{k-1} \land t})
+\]</span> Kluczowe jest to, że wartość procesu <span class="math inline">\(X_s\)</span> na przedziale <span class="math inline">\((t_{k-1}, t_k]\)</span> jest ustalana na początku tego przedziału. Mówimy, że proces jest <strong>nieantycypujący</strong>.</p>
+<p><strong>Krok 2: Izometria Itô</strong></p>
+<p>Dla procesów elementarnych zachodzi fundamentalna własność, tzw. <strong>izometria Itô</strong> (wspomniana w Stwierdzeniu 8.4). Łączy ona drugi moment całki z całką drugiego momentu integranda: <span class="math display">\[
+E\left[ \left( \int_0^T X_s dW_s \right)^2 \right] = E\left[ \int_0^T X_s^2 ds \right]
+\]</span> Ta równość oznacza, że operator całkowania stochastycznego jest izometrią pomiędzy przestrzenią procesów <span class="math inline">\(L^2(\Omega \times [0,T])\)</span> a przestrzenią zmiennych losowych <span class="math inline">\(L^2(\Omega)\)</span>.</p>
+<p><strong>Krok 3: Rozszerzenie na ogólne procesy</strong></p>
+<p>Dzięki własności izometrii, definicję całki można rozszerzyć z gęstej podprzestrzeni procesów elementarnych na całą przestrzeń procesów prognozowalnych <span class="math inline">\(X_t\)</span> spełniających warunek <span class="math inline">\(E[\int_0^T X_s^2 ds] &lt; \infty\)</span>.</p>
+<p><strong>Uogólnienie: Całka względem martyngałów</strong></p>
+<p>Konstrukcję można uogólnić, zastępując proces Wienera <span class="math inline">\(W_t\)</span> dowolnym ciągłym martyngałem (lub lokalnym martyngałem) <span class="math inline">\(M_t\)</span> (rozdział 10. skryptu). Wówczas w izometrii Itô zwykła miara czasu <span class="math inline">\(ds\)</span> zostaje zastąpiona przez miarę związaną z <strong>wariacją kwadratową</strong> martyngału, <span class="math inline">\(d\langle M \rangle_s\)</span>: <span class="math display">\[
+E\left[ \left( \int_0^T X_s dM_s \right)^2 \right] = E\left[ \int_0^T X_s^2 d\langle M \rangle_s \right]
+\]</span></p>
+</section>
+<section id="b-całka-stratonowicza" class="level4">
+<h4 class="anchored" data-anchor-id="b-całka-stratonowicza">b) Całka Stratonowicza</h4>
+<p>Całka Stratonowicza (oznaczana jako <span class="math inline">\(\int Y_s \circ dW_s\)</span>) jest alternatywną definicją, motywowaną chęcią zachowania klasycznych reguł rachunku różniczkowego, w szczególności reguły łańcuchowej. W jej definicji, zamiast brać wartość integranda na początku przedziału (jak w całce Itô), nieformalnie używa się punktu pośredniego.</p>
+<p>Formalnie, całkę Stratonowicza często definiuje się poprzez całkę Itô (jak w Ćwiczeniu 13.12 skryptu): <span class="math display">\[
+\int_0^t Y_s \circ dZ_s := \int_0^t Y_s dZ_s + \frac{1}{2} \langle Y, Z \rangle_t
+\]</span> gdzie <span class="math inline">\(\langle Y, Z \rangle_t\)</span> to <strong>kowariacja kwadratowa</strong> procesów <span class="math inline">\(Y\)</span> i <span class="math inline">\(Z\)</span>.</p>
+</section>
+<section id="porównanie-całki-itô-i-stratonowicza" class="level4">
+<h4 class="anchored" data-anchor-id="porównanie-całki-itô-i-stratonowicza">Porównanie całki Itô i Stratonowicza</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cecha</th>
+<th style="text-align: left;">Całka Itô (<span class="math inline">\(\int X_s dW_s\)</span>)</th>
+<th style="text-align: left;">Całka Stratonowicza (<span class="math inline">\(\int X_s \circ dW_s\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Punkt ewaluacji</strong></td>
+<td style="text-align: left;">Początek przedziału (nieantycypująca)</td>
+<td style="text-align: left;">Środek przedziału (antycypująca)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Własność martyngałowa</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\int X_s dW_s\)</span> jest martyngałem (lokalnym)</td>
+<td style="text-align: left;">Generalnie nie jest martyngałem</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reguła łańcuchowa</strong></td>
+<td style="text-align: left;">Wymaga dodatkowego członu (wzór Itô)</td>
+<td style="text-align: left;">Ma taką samą postać jak w klasycznym rachunku</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Zastosowania</strong></td>
+<td style="text-align: left;">Finanse matematyczne, biologia, teoria filtracji</td>
+<td style="text-align: left;">Inżynieria, fizyka (gdy szum jest idealizacją procesu gładkiego)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
 </section>
 <section id="różniczka-stochastyczna-itô-wzór-itô." class="level3">
 <h3 class="anchored" data-anchor-id="różniczka-stochastyczna-itô-wzór-itô.">2. Różniczka stochastyczna Itô, wzór Itô.</h3>
+<section id="a-różniczka-stochastyczna" class="level4">
+<h4 class="anchored" data-anchor-id="a-różniczka-stochastyczna">a) Różniczka stochastyczna</h4>
+<p>Równanie w postaci <strong>różniczki stochastycznej</strong> jest zwięzłym zapisem stochastycznego równania całkowego. Zapis: <span class="math display">\[
+dX_t = b(t, X_t) dt + \sigma(t, X_t) dW_t
+\]</span> jest formalnym skrótem dla równania (jak w Definicji 14.1 skryptu): <span class="math display">\[
+X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dW_s
+\]</span> - <strong><span class="math inline">\(b(t, X_t)\)</span></strong> to <strong>dryf (drift)</strong>, opisujący deterministyczną tendencję procesu. - <strong><span class="math inline">\(\sigma(t, X_t)\)</span></strong> to <strong>dyfuzja (diffusion)</strong> lub <strong>zmienność (volatility)</strong>, opisująca losową składową procesu.</p>
+<p>Proces <span class="math inline">\(X_t\)</span> opisany takim równaniem nazywany jest <strong>procesem Itô</strong> lub procesem dyfuzji.</p>
+</section>
+<section id="b-wzór-itô-lemat-itô" class="level4">
+<h4 class="anchored" data-anchor-id="b-wzór-itô-lemat-itô">b) Wzór Itô (Lemat Itô)</h4>
+<p>Wzór Itô jest jednym z najważniejszych wyników analizy stochastycznej. Jest to odpowiednik reguły łańcuchowej dla funkcji od procesów Itô. Pokazuje, jak zmienia się w czasie gładka funkcja <span class="math inline">\(f\)</span> procesu stochastycznego.</p>
+<p>W odróżnieniu od klasycznego rachunku, ze względu na niezerową wariację kwadratową procesu Wienera (nieformalnie <span class="math inline">\((dW_t)^2 = dt\)</span>), w rozwinięciu Taylora funkcji <span class="math inline">\(f(X_t)\)</span> należy uwzględnić również wyraz drugiego rzędu.</p>
+<p><strong>Wzór Itô dla ogólnego semimartyngału</strong></p>
+<p>W skrypcie (Twierdzenie 13.1) wzór jest podany dla ogólnego ciągłego semimartyngału <span class="math inline">\(Z_t = Z_0 + M_t + A_t\)</span>, gdzie <span class="math inline">\(M_t\)</span> jest ciągłym martyngałem lokalnym, a <span class="math inline">\(A_t\)</span> procesem o skończonym wahaniu. Jeśli <span class="math inline">\(f\)</span> jest funkcją klasy <span class="math inline">\(C^2\)</span>, to <span class="math inline">\(f(Z_t)\)</span> również jest semimartyngałem i zachodzi: <span class="math display">\[
+f(Z_t) = f(Z_0) + \int_0^t f'(Z_s) dZ_s + \frac{1}{2} \int_0^t f''(Z_s) d\langle M \rangle_s
+\]</span> gdzie <span class="math inline">\(\langle M \rangle_s\)</span> to wariacja kwadratowa procesu <span class="math inline">\(M_s\)</span>.</p>
+<p><strong>Wzór Itô dla procesu Itô</strong></p>
+<p>Niech <span class="math inline">\(X_t\)</span> będzie procesem Itô danym przez <span class="math inline">\(dX_t = b_t dt + \sigma_t dW_t\)</span>, a <span class="math inline">\(f(t, x)\)</span> będzie gładką funkcją (klasy <span class="math inline">\(C^{1,2}\)</span>). Wówczas proces <span class="math inline">\(Y_t = f(t, X_t)\)</span> również jest procesem Itô, a jego różniczka stochastyczna wynosi: <span class="math display">\[
+dY_t = \frac{\partial f}{\partial t}(t, X_t) dt + \frac{\partial f}{\partial x}(t, X_t) dX_t + \frac{1}{2} \frac{\partial^2 f}{\partial x^2}(t, X_t) (dX_t)^2
+\]</span> Stosując nieformalne reguły rachunku Itô: <span class="math inline">\((dt)^2=0\)</span>, <span class="math inline">\(dt dW_t = 0\)</span> oraz <span class="math inline">\((dW_t)^2 = dt\)</span>, i podstawiając <span class="math inline">\(dX_t\)</span>, otrzymujemy pełną postać wzoru: <span class="math display">\[
+df(t, X_t) = \left( \frac{\partial f}{\partial t} + b_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dW_t
+\]</span> Pojawienie się członu z drugą pochodną (<span class="math inline">\(\frac{\partial^2 f}{\partial x^2}\)</span>) jest kluczową różnicą w stosunku do klasycznego rachunku różniczkowego i stanowi sedno rachunku Itô.</p>
+<p><strong>Wzór Itô w wersji wielowymiarowej</strong></p>
+<p>Wzór ten można uogólnić na funkcje wielu procesów stochastycznych. Dla funkcji <span class="math inline">\(f\)</span> i <span class="math inline">\(d\)</span>-wymiarowego procesu <span class="math inline">\(Z_t = (Z_t^{(1)}, ..., Z_t^{(d)})\)</span>, wzór przyjmuje postać (Twierdzenie 13.2): <span class="math display">\[
+df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1}{2} \sum_{i,j=1}^d \frac{\partial^2 f}{\partial x_i \partial x_j}(Z_t) d\langle M^{(i)}, M^{(j)} \rangle_t
+\]</span> gdzie <span class="math inline">\(d\langle M^{(i)}, M^{(j)} \rangle_t\)</span> jest kowariacją kwadratową części martyngałowych procesów <span class="math inline">\(Z^{(i)}\)</span> i <span class="math inline">\(Z^{(j)}\)</span>.</p>
 <p><br></p>
+</section>
 </section>
 </section>
 <section id="podstawy-analizy-danych-finansowych" class="level2">
@@ -1395,8 +1725,8 @@ FV = \int_{0}^{n} R \cdot e^{i (n-t)} \, dt
 <section id="podstawowe-rozkłady-liczby-szkód-w-modelu-ryzyka-łącznego" class="level3">
 <h3 class="anchored" data-anchor-id="podstawowe-rozkłady-liczby-szkód-w-modelu-ryzyka-łącznego">2. Podstawowe rozkłady liczby szkód w modelu ryzyka łącznego</h3>
 <p>W modelu ryzyka łącznego kluczowym elementem jest właściwe zamodelowanie losowej liczby szkód (<span class="math inline">\(N\)</span>). W praktyce aktuarialnej stosuje się głównie trzy poniższe rozkłady.</p>
-<section id="rozkład-poissona" class="level4">
-<h4 class="anchored" data-anchor-id="rozkład-poissona">Rozkład Poissona</h4>
+<section id="rozkład-poissona-1" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-poissona-1">Rozkład Poissona</h4>
 <p>Jest to najczęściej stosowany i fundamentalny rozkład dla liczby szkód.</p>
 <ul>
 <li><strong>Charakterystyka:</strong> Modeluje liczbę zdarzeń (szkód) zachodzących losowo i niezależnie w ustalonym przedziale czasu, przy stałej średniej intensywności (<span class="math inline">\(\lambda\)</span>).</li>
@@ -1420,8 +1750,8 @@ FV = \int_{0}^{n} R \cdot e^{i (n-t)} \, dt
 </ul></li>
 </ul>
 </section>
-<section id="rozkład-dwumianowy" class="level4">
-<h4 class="anchored" data-anchor-id="rozkład-dwumianowy">Rozkład dwumianowy</h4>
+<section id="rozkład-dwumianowy-1" class="level4">
+<h4 class="anchored" data-anchor-id="rozkład-dwumianowy-1">Rozkład dwumianowy</h4>
 <p>Stosowany w bardziej specyficznych sytuacjach, gdy liczba potencjalnych szkód jest z góry ograniczona.</p>
 <ul>
 <li><strong>Charakterystyka:</strong> Opisuje liczbę szkód w stałej liczbie <span class="math inline">\(n\)</span> niezależnych polis, gdzie prawdopodobieństwo szkody <span class="math inline">\(q\)</span> jest takie samo dla każdej polisy.</li>
