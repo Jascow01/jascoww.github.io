@@ -119,6 +119,9 @@ Metroda ortogonalizacji Grama-Schmidta:
 
 ![](images/svd.png)
 
+
+![](images/svd1.png)
+
 -   Rozkład $Shura$
 
 ![](images/schura.png)
@@ -180,16 +183,22 @@ Dekoder odpowiedzialny jest za generowanie sekwencji wyjściowej. Token wyjścio
 
 ### 2. Problem zanikającego i eksplodującego gradientu w modelach rekurencyjnych.
 
-Problemy zanikającegi i eksplodującego gradientu można przedstawić w następujący sposób:
+Problemy zanikającego i eksplodującego gradientu można przedstawić w następujący sposób:
 
--   **Zanikający gradient**: Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.
+-   **Zanikający gradient**: 
+  - Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.
+  - Sieć ignoruje zależności długoterminowe (np. pamięta tylko kilka ostatnich kroków sekwencji).
 
-Aby zminimalizować ten problem stosuje się techniki takie jak:
+
+-   **Eksplodujący gradient**: 
+  - Gradienty stają się zaskakująco duże, przez co następują duże aktualizacje wag (powtarzające się mnożenie dużych wag) każdego węzła w głebokiej sieci neuronowej
+  - Loss nagle skacze do ogromnych wartości
+
+Aby zminimalizować te problemy stosuje się techniki takie jak:
 
   - Mniejszy *batch size* podczas uczenia sieci;
-  - W przypadku sieci 
-
--   **Eksplodujący gradient**: Gradienty stają się zaskakująco duże, przez co następują duże aktualizacje wag (powtarzające się mnożenie dużych wag) każdego węzła w głebokiej sieci neuronowej
+  - Dobór parametrów (np. learning rate, dropout);
+  - Warstwy normalizacji wag (Batch Normalization, Layer Normalization); 
 
 ### 3. Rozwiązania z zakresu technik głębokiego uczenia dedykowanych do zadań wizji komputerowej.
 
@@ -411,6 +420,29 @@ $$
 ## 5 Metody numeryczne w zastosowaniach
 
 ### 1. Wartości własne macierzy i sposoby ich wyznaczania.
+
+#### **Definicja wartości własnych**
+
+Niech $A$ będzie \textbf{macierzą kwadratową} o wymiarze $n \times n$. 
+Liczbę $\lambda \in \mathbb{R}$ (lub $\mathbb{C}$) nazywamy \textbf{wartością własną} macierzy $A$, jeśli istnieje \textbf{niezerowy wektor} $\mathbf{x} \in \mathbb{R}^n$, taki że:
+$$
+    A \mathbf{x} = \lambda \mathbf{x}
+$$
+Wektor $\mathbf{x}$ nazywa się wówczas \textbf{wektorem własnym} odpowiadającym wartości własnej $\lambda$.
+
+
+Ponieważ $\lambda \mathbf{x} = \lambda I \mathbf{x}$, gdzie $I$ to macierz jednostkowa, możemy zapisać:
+$$
+    (A - \lambda I)\mathbf{x} = \mathbf{0}
+$$
+To jest \textbf{układ jednorodny równań liniowych}.
+Aby istniało \textbf{niezerowe rozwiązanie} ($\mathbf{x} \neq \mathbf{0}$), macierz $(A - \lambda I)$ musi być \textbf{osobliwa}, czyli:
+$$
+    \det(A - \lambda I) = 0
+$$
+które nazywamy **równaniem charakterystycznym** macierzy $A$.
+
+
 
 #### **Metoda potęgowa**
 
@@ -830,6 +862,18 @@ Model ten opisuje procesy wieloetapowe, takie jak linia produkcyjna, proces skł
 
 ### 1. Mechanizm działania algorytmu najczęściej używanego do kompresji wideo.
 
+#### **Kodowanie między klatkowe** ([materiał](https://swistak.codes/post/kompresja-wideo/))
+
+Mówiąc najprościej jak się da, kodowanie to polega na wykorzystaniu zależności między sąsiadującymi klatkami. W normalnym zapisie wideo, czy to z kamery, czy też animacji, nie jest powszechne, aby każda klatka miała całkowicie inny obraz. Zmieniają się tylko wybrane obszary. Dlatego zamiast zapisywać całą klatkę, możemy zapisać jedynie różnice, które zapisane są w tzw. makroblokach (wycinki obrazu np $16 \times 16$) W ten sposób tworzymy całe sekwencje, gdzie mamy całą klatkę (I-frame, klatka kluczowa), po której następuje wiele tych zapisujących różnice (P-frame lub B-frame). Taka sekwencja jest nazywana **GOP** (group of pictures, po pol. grupa obrazów).
+
+Wewnątrz sekwencji GOP możemy wyróżnić trzy rodzaje klatek:
+
+  - **I-frame** (Intra frame, klatka kluczowa) — zaczyna sekwencję. Jest to jedyna klatka zapisana w całości. Czasem określa się, że GOP to po prostu odległość między klatkami tego typu. Klatki te w zależności od formatu mogą być niekompresowane lub kompresowane tak, jak robi się to ze zwykłymi obrazami. Na przykład w MPEG-1 kodowanie I-frame jest niemal identyczne jak kodowanie plików JPEG (też stosuje się transformację DCT).
+  - **P-frame** (Predicted frame, po pol. klatka przewidywana) — jest to klatka, która koduje ruch na podstawie klatki będącej wcześniej w sekwencji. W starszych formatach (m.in. H.261, H.263) musiała być to klatka znajdująca się bezpośrednio przed P-frame, jednak w nowszych standardach (m.in. H.264, H.265) może się odnosić do dowolnej wcześniejszej (a nawet wielu na raz). Warto dodać, że ruch może być kodowany na podstawie dowolnej klatki w sekwencji, niekoniecznie względem I-frame.
+  - **B-frame** (Bidirectional/bipredictive frame, po pol. klatka dwukierunkowa/podwójnie przewidywana) — w przeciwieństwie do P-frame mogą korzystać z klatek, które są zarówno przed nimi, jak i po nich. Analogicznie jak wcześniej, w starszych standardach mogły wykorzystywać informacje jedynie z klatek bezpośrednio przed i bezpośrednio po, a obecnie jest większa swoboda. Ten rodzaj klatek jest najbardziej wymagający obliczeniowo, dlatego np. w czasach MPEG-1 rezygnowano z kodowania w ten sposób, stosując jedynie I-frame i P-frame. Dziś jednak nie stanowi już to problemu.
+
+Aby zakodować różnice, nie potrzebujemy kodować całej klatki. Też jednak różnic nie zapisujemy z dokładnością do 1 piksela. W standardach wideo, począwszy od H.261, po dzisiejsze H.264 (aczkolwiek już nie w H.265), wykorzystuje się do tego makrobloki. Jest to samodzielnie kodowany mały wycinek klatki (standardowy wymiar $16 \times 16$), na którym wykonuje się między innymi transformację liniową w celu jego dalszego optymalnego zakodowania.
+
 ### 2. Pojęcie „przetwarzania obrazów cyfrowych”. Zasady postępowania.
 
 1.  Pozyskanie (akwizycja) obrazu i przetworzenie do postaci cyfrowej;
@@ -943,22 +987,23 @@ $$
 
 ### 3. Twierdzenie ergodyczne i przykłady jego zastosowania.
 
-#### Twierdzenie o ergodyczności łańcucha Markowa
+#### [Twierdzenie o ergodyczności](http://tomasz.home.amu.edu.pl/wrp/11_mark.pdf) łańcucha Markowa
 
 ::: {.callout-note}
 ## Definicja
 
+G
+
 Jednorodny łańcuch Markowa $\{Z_n, n \in \mathbb{N}_0\}$ jest **ergodyczny**,  
 jeśli dla każdego $j \in S$ istnieją i nie zależą od $i \in S$ granice:
 
-$$
-q_j = \lim_{n \to \infty} p_{ij}^{(n)} > 0,
+$$\pi_j = \lim_{n \to \infty} p_{ij}^{(n)} > 0,
 $$
 
 oraz
 
 $$
-\sum_{j \in S} q_j = 1.
+\sum_{j \in S} \pi_j = 1.
 $$
 
 :::
@@ -1122,13 +1167,13 @@ gdzie $d\langle M^{(i)}, M^{(j)} \rangle_t$ jest kowariacją kwadratową częśc
 
 Oczywiście, wyjaśnijmy te fundamentalne pojęcia analizy finansowej w prosty i zrozumiały sposób.
 
-### Wprowadzenie
+#### Wprowadzenie
 
 W świecie finansów rzadko kiedy sprawy są tak proste, jak się na pierwszy rzut oka wydaje. Dotyczy to zwłaszcza oprocentowania. Kiedy bank reklamuje lokatę lub kredyt, podaje tzw. **nominalną stopę procentową**. Jednak to, ile faktycznie zarobisz lub zapłacisz, zależy od **efektywnej stopy procentowej**. Zrozumienie różnicy między nimi jest kluczowe do podejmowania świadomych decyzji finansowych.
 
 ---
 
-### 1. Nominalna Stopa Procentowa (r_nom)
+#### 1. Nominalna Stopa Procentowa (r_nom)
 
 Nominalna stopa procentowa, często oznaczana jako **stopa nominalna w skali roku** (np. 8% p.a. - *per annum*), to podstawowa, "reklamowana" wartość oprocentowania.
 
@@ -1145,7 +1190,7 @@ Bank oferuje lokatę na 10% w skali roku. To jest właśnie nominalna stopa proc
 
 ---
 
-### 2. Efektywna Stopa Procentowa (r_eff)
+#### 2. Efektywna Stopa Procentowa (r_eff)
 
 Efektywna stopa procentowa to **rzeczywista stopa zwrotu** z inwestycji lub **realny koszt** kredytu po uwzględnieniu efektu **procentu składanego** (czyli doliczania odsetek do kapitału w ciągu roku).
 
@@ -1179,7 +1224,7 @@ Jak widać, mimo tej samej stopy nominalnej (12%), częstsza kapitalizacja spraw
 
 ---
 
-### 3. Twierdzenie Charakteryzujące Relacje Między Nimi (Wzór)
+#### 3. Twierdzenie Charakteryzujące Relacje Między Nimi (Wzór)
 
 Relację między nominalną a efektywną stopą procentową opisuje precyzyjny wzór matematyczny.
 
@@ -1217,7 +1262,7 @@ Wynik jest identyczny z tym, który uzyskaliśmy, licząc "krok po kroku".
 
 ---
 
-### Podsumowanie i Praktyczne Zastosowanie
+#### Podsumowanie i Praktyczne Zastosowanie
 
 | Cecha | **Nominalna Stopa Procentowa** | **Efektywna Stopa Procentowa** |
 | :--- | :--- | :--- |

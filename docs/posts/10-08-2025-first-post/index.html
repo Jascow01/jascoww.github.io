@@ -258,11 +258,6 @@ window.Quarto = {
   <li><a href="#podstawy-analizy-danych-finansowych" id="toc-podstawy-analizy-danych-finansowych" class="nav-link" data-scroll-target="#podstawy-analizy-danych-finansowych">11. Podstawy analizy danych finansowych</a>
   <ul class="collapse">
   <li><a href="#nominalna-i-efektywna-stopa-procentowa-oraz-twierdzenie-charakteryzujące-relacje-między-nimi." id="toc-nominalna-i-efektywna-stopa-procentowa-oraz-twierdzenie-charakteryzujące-relacje-między-nimi." class="nav-link" data-scroll-target="#nominalna-i-efektywna-stopa-procentowa-oraz-twierdzenie-charakteryzujące-relacje-między-nimi.">1. Nominalna i efektywna stopa procentowa oraz twierdzenie charakteryzujące relacje między nimi.</a></li>
-  <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link" data-scroll-target="#wprowadzenie">Wprowadzenie</a></li>
-  <li><a href="#nominalna-stopa-procentowa-r_nom" id="toc-nominalna-stopa-procentowa-r_nom" class="nav-link" data-scroll-target="#nominalna-stopa-procentowa-r_nom">1. Nominalna Stopa Procentowa (r_nom)</a></li>
-  <li><a href="#efektywna-stopa-procentowa-r_eff" id="toc-efektywna-stopa-procentowa-r_eff" class="nav-link" data-scroll-target="#efektywna-stopa-procentowa-r_eff">2. Efektywna Stopa Procentowa (r_eff)</a></li>
-  <li><a href="#twierdzenie-charakteryzujące-relacje-między-nimi-wzór" id="toc-twierdzenie-charakteryzujące-relacje-między-nimi-wzór" class="nav-link" data-scroll-target="#twierdzenie-charakteryzujące-relacje-między-nimi-wzór">3. Twierdzenie Charakteryzujące Relacje Między Nimi (Wzór)</a></li>
-  <li><a href="#podsumowanie-i-praktyczne-zastosowanie" id="toc-podsumowanie-i-praktyczne-zastosowanie" class="nav-link" data-scroll-target="#podsumowanie-i-praktyczne-zastosowanie">Podsumowanie i Praktyczne Zastosowanie</a></li>
   <li><a href="#pojęcie-renty-oraz-główne-rodzaje-rent-ich-wartości-obecne-wartości-przyszłe-i-przykłady-zastosowań." id="toc-pojęcie-renty-oraz-główne-rodzaje-rent-ich-wartości-obecne-wartości-przyszłe-i-przykłady-zastosowań." class="nav-link" data-scroll-target="#pojęcie-renty-oraz-główne-rodzaje-rent-ich-wartości-obecne-wartości-przyszłe-i-przykłady-zastosowań.">2. Pojęcie renty oraz główne rodzaje rent – ich wartości obecne, wartości przyszłe i przykłady zastosowań.</a></li>
   <li><a href="#procesy-akumulacji-i-dyskontowania-oraz-ich-rodzaje." id="toc-procesy-akumulacji-i-dyskontowania-oraz-ich-rodzaje." class="nav-link" data-scroll-target="#procesy-akumulacji-i-dyskontowania-oraz-ich-rodzaje.">3. Procesy akumulacji i dyskontowania oraz ich rodzaje.</a></li>
   </ul></li>
@@ -395,6 +390,7 @@ f(\lambda) &amp; f'(\lambda) &amp; \frac{f''(\lambda)}{2!} &amp; \cdots &amp; \f
 <li>Rozkład <span class="math inline">\(SVD\)</span></li>
 </ul>
 <p><img src="images/svd.png" class="img-fluid"></p>
+<p><img src="images/svd1.png" class="img-fluid"></p>
 <ul>
 <li>Rozkład <span class="math inline">\(Shura\)</span></li>
 </ul>
@@ -454,15 +450,20 @@ f(\lambda) &amp; f'(\lambda) &amp; \frac{f''(\lambda)}{2!} &amp; \cdots &amp; \f
 </section>
 <section id="problem-zanikającego-i-eksplodującego-gradientu-w-modelach-rekurencyjnych." class="level3">
 <h3 class="anchored" data-anchor-id="problem-zanikającego-i-eksplodującego-gradientu-w-modelach-rekurencyjnych.">2. Problem zanikającego i eksplodującego gradientu w modelach rekurencyjnych.</h3>
-<p>Problemy zanikającegi i eksplodującego gradientu można przedstawić w następujący sposób:</p>
+<p>Problemy zanikającego i eksplodującego gradientu można przedstawić w następujący sposób:</p>
 <ul>
-<li><strong>Zanikający gradient</strong>: Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.</li>
+<li><p><strong>Zanikający gradient</strong>:</p></li>
+<li><p>Coraz mniejsze gradienty powodują coraz mniejsze zmniany wag w węzłach głebkiej sieci neuronowej, co porowadzi do niewielkiego lub żadnego uczenia się.</p></li>
+<li><p>Sieć ignoruje zależności długoterminowe (np. pamięta tylko kilka ostatnich kroków sekwencji).</p></li>
+<li><p><strong>Eksplodujący gradient</strong>:</p></li>
+<li><p>Gradienty stają się zaskakująco duże, przez co następują duże aktualizacje wag (powtarzające się mnożenie dużych wag) każdego węzła w głebokiej sieci neuronowej</p></li>
+<li><p>Loss nagle skacze do ogromnych wartości</p></li>
 </ul>
-<p>Aby zminimalizować ten problem stosuje się techniki takie jak:</p>
+<p>Aby zminimalizować te problemy stosuje się techniki takie jak:</p>
 <ul>
-<li><p>Mniejszy <em>batch size</em> podczas uczenia sieci;</p></li>
-<li><p>W przypadku sieci</p></li>
-<li><p><strong>Eksplodujący gradient</strong>: Gradienty stają się zaskakująco duże, przez co następują duże aktualizacje wag (powtarzające się mnożenie dużych wag) każdego węzła w głebokiej sieci neuronowej</p></li>
+<li>Mniejszy <em>batch size</em> podczas uczenia sieci;</li>
+<li>Dobór parametrów (np. learning rate, dropout);</li>
+<li>Warstwy normalizacji wag (Batch Normalization, Layer Normalization);</li>
 </ul>
 </section>
 <section id="rozwiązania-z-zakresu-technik-głębokiego-uczenia-dedykowanych-do-zadań-wizji-komputerowej." class="level3">
@@ -703,6 +704,17 @@ P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}
 <h2 class="anchored" data-anchor-id="metody-numeryczne-w-zastosowaniach">5 Metody numeryczne w zastosowaniach</h2>
 <section id="wartości-własne-macierzy-i-sposoby-ich-wyznaczania." class="level3">
 <h3 class="anchored" data-anchor-id="wartości-własne-macierzy-i-sposoby-ich-wyznaczania.">1. Wartości własne macierzy i sposoby ich wyznaczania.</h3>
+<section id="definicja-wartości-własnych" class="level4">
+<h4 class="anchored" data-anchor-id="definicja-wartości-własnych"><strong>Definicja wartości własnych</strong></h4>
+<p>Niech <span class="math inline">\(A\)</span> będzie o wymiarze <span class="math inline">\(n \times n\)</span>. Liczbę <span class="math inline">\(\lambda \in \mathbb{R}\)</span> (lub <span class="math inline">\(\mathbb{C}\)</span>) nazywamy macierzy <span class="math inline">\(A\)</span>, jeśli istnieje <span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span>, taki że: <span class="math display">\[
+    A \mathbf{x} = \lambda \mathbf{x}
+\]</span> Wektor <span class="math inline">\(\mathbf{x}\)</span> nazywa się wówczas odpowiadającym wartości własnej <span class="math inline">\(\lambda\)</span>.</p>
+<p>Ponieważ <span class="math inline">\(\lambda \mathbf{x} = \lambda I \mathbf{x}\)</span>, gdzie <span class="math inline">\(I\)</span> to macierz jednostkowa, możemy zapisać: <span class="math display">\[
+    (A - \lambda I)\mathbf{x} = \mathbf{0}
+\]</span> To jest . Aby istniało (<span class="math inline">\(\mathbf{x} \neq \mathbf{0}\)</span>), macierz <span class="math inline">\((A - \lambda I)\)</span> musi być , czyli: <span class="math display">\[
+    \det(A - \lambda I) = 0
+\]</span> które nazywamy <strong>równaniem charakterystycznym</strong> macierzy <span class="math inline">\(A\)</span>.</p>
+</section>
 <section id="metoda-potęgowa" class="level4">
 <h4 class="anchored" data-anchor-id="metoda-potęgowa"><strong>Metoda potęgowa</strong></h4>
 <p>Służy do wyznaczenia maksymalnej co do modułu wartości własnej i odpowiadającego jej wektora własnego</p>
@@ -1119,6 +1131,17 @@ x_n = (x_{n-l} + n_{n-k})(\text{mod} m)
 <h2 class="anchored" data-anchor-id="multimedialne-metody-opracowywania-danych">8. Multimedialne metody opracowywania danych</h2>
 <section id="mechanizm-działania-algorytmu-najczęściej-używanego-do-kompresji-wideo." class="level3">
 <h3 class="anchored" data-anchor-id="mechanizm-działania-algorytmu-najczęściej-używanego-do-kompresji-wideo.">1. Mechanizm działania algorytmu najczęściej używanego do kompresji wideo.</h3>
+<section id="kodowanie-między-klatkowe-materiał" class="level4">
+<h4 class="anchored" data-anchor-id="kodowanie-między-klatkowe-materiał">Kodowanie między klatkowe (<a href="https://swistak.codes/post/kompresja-wideo/">materiał</a>)</h4>
+<p>Mówiąc najprościej jak się da, kodowanie to polega na wykorzystaniu zależności między sąsiadującymi klatkami. W normalnym zapisie wideo, czy to z kamery, czy też animacji, nie jest powszechne, aby każda klatka miała całkowicie inny obraz. Zmieniają się tylko wybrane obszary. Dlatego zamiast zapisywać całą klatkę, możemy zapisać jedynie różnice, które zapisane są w tzw. makroblokach (wycinki obrazu np <span class="math inline">\(16 \times 16\)</span>) W ten sposób tworzymy całe sekwencje, gdzie mamy całą klatkę (I-frame, klatka kluczowa), po której następuje wiele tych zapisujących różnice (P-frame lub B-frame). Taka sekwencja jest nazywana <strong>GOP</strong> (group of pictures, po pol. grupa obrazów).</p>
+<p>Wewnątrz sekwencji GOP możemy wyróżnić trzy rodzaje klatek:</p>
+<ul>
+<li><strong>I-frame</strong> (Intra frame, klatka kluczowa) — zaczyna sekwencję. Jest to jedyna klatka zapisana w całości. Czasem określa się, że GOP to po prostu odległość między klatkami tego typu. Klatki te w zależności od formatu mogą być niekompresowane lub kompresowane tak, jak robi się to ze zwykłymi obrazami. Na przykład w MPEG-1 kodowanie I-frame jest niemal identyczne jak kodowanie plików JPEG (też stosuje się transformację DCT).</li>
+<li><strong>P-frame</strong> (Predicted frame, po pol. klatka przewidywana) — jest to klatka, która koduje ruch na podstawie klatki będącej wcześniej w sekwencji. W starszych formatach (m.in. H.261, H.263) musiała być to klatka znajdująca się bezpośrednio przed P-frame, jednak w nowszych standardach (m.in. H.264, H.265) może się odnosić do dowolnej wcześniejszej (a nawet wielu na raz). Warto dodać, że ruch może być kodowany na podstawie dowolnej klatki w sekwencji, niekoniecznie względem I-frame.</li>
+<li><strong>B-frame</strong> (Bidirectional/bipredictive frame, po pol. klatka dwukierunkowa/podwójnie przewidywana) — w przeciwieństwie do P-frame mogą korzystać z klatek, które są zarówno przed nimi, jak i po nich. Analogicznie jak wcześniej, w starszych standardach mogły wykorzystywać informacje jedynie z klatek bezpośrednio przed i bezpośrednio po, a obecnie jest większa swoboda. Ten rodzaj klatek jest najbardziej wymagający obliczeniowo, dlatego np. w czasach MPEG-1 rezygnowano z kodowania w ten sposób, stosując jedynie I-frame i P-frame. Dziś jednak nie stanowi już to problemu.</li>
+</ul>
+<p>Aby zakodować różnice, nie potrzebujemy kodować całej klatki. Też jednak różnic nie zapisujemy z dokładnością do 1 piksela. W standardach wideo, począwszy od H.261, po dzisiejsze H.264 (aczkolwiek już nie w H.265), wykorzystuje się do tego makrobloki. Jest to samodzielnie kodowany mały wycinek klatki (standardowy wymiar <span class="math inline">\(16 \times 16\)</span>), na którym wykonuje się między innymi transformację liniową w celu jego dalszego optymalnego zakodowania.</p>
+</section>
 </section>
 <section id="pojęcie-przetwarzania-obrazów-cyfrowych.-zasady-postępowania." class="level3">
 <h3 class="anchored" data-anchor-id="pojęcie-przetwarzania-obrazów-cyfrowych.-zasady-postępowania.">2. Pojęcie „przetwarzania obrazów cyfrowych”. Zasady postępowania.</h3>
@@ -1256,7 +1279,7 @@ Q =
 <section id="twierdzenie-ergodyczne-i-przykłady-jego-zastosowania." class="level3">
 <h3 class="anchored" data-anchor-id="twierdzenie-ergodyczne-i-przykłady-jego-zastosowania.">3. Twierdzenie ergodyczne i przykłady jego zastosowania.</h3>
 <section id="twierdzenie-o-ergodyczności-łańcucha-markowa" class="level4">
-<h4 class="anchored" data-anchor-id="twierdzenie-o-ergodyczności-łańcucha-markowa">Twierdzenie o ergodyczności łańcucha Markowa</h4>
+<h4 class="anchored" data-anchor-id="twierdzenie-o-ergodyczności-łańcucha-markowa"><a href="http://tomasz.home.amu.edu.pl/wrp/11_mark.pdf">Twierdzenie o ergodyczności</a> łańcucha Markowa</h4>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1267,14 +1290,14 @@ Definicja
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>G</p>
 <p>Jednorodny łańcuch Markowa <span class="math inline">\(\{Z_n, n \in \mathbb{N}_0\}\)</span> jest <strong>ergodyczny</strong>,<br>
 jeśli dla każdego <span class="math inline">\(j \in S\)</span> istnieją i nie zależą od <span class="math inline">\(i \in S\)</span> granice:</p>
-<p><span class="math display">\[
-q_j = \lim_{n \to \infty} p_{ij}^{(n)} &gt; 0,
+<p><span class="math display">\[\pi_j = \lim_{n \to \infty} p_{ij}^{(n)} &gt; 0,
 \]</span></p>
 <p>oraz</p>
 <p><span class="math display">\[
-\sum_{j \in S} q_j = 1.
+\sum_{j \in S} \pi_j = 1.
 \]</span></p>
 </div>
 </div>
@@ -1436,14 +1459,13 @@ df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1
 <section id="nominalna-i-efektywna-stopa-procentowa-oraz-twierdzenie-charakteryzujące-relacje-między-nimi." class="level3">
 <h3 class="anchored" data-anchor-id="nominalna-i-efektywna-stopa-procentowa-oraz-twierdzenie-charakteryzujące-relacje-między-nimi.">1. Nominalna i efektywna stopa procentowa oraz twierdzenie charakteryzujące relacje między nimi.</h3>
 <p>Oczywiście, wyjaśnijmy te fundamentalne pojęcia analizy finansowej w prosty i zrozumiały sposób.</p>
-</section>
-<section id="wprowadzenie" class="level3">
-<h3 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h3>
+<section id="wprowadzenie" class="level4">
+<h4 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h4>
 <p>W świecie finansów rzadko kiedy sprawy są tak proste, jak się na pierwszy rzut oka wydaje. Dotyczy to zwłaszcza oprocentowania. Kiedy bank reklamuje lokatę lub kredyt, podaje tzw. <strong>nominalną stopę procentową</strong>. Jednak to, ile faktycznie zarobisz lub zapłacisz, zależy od <strong>efektywnej stopy procentowej</strong>. Zrozumienie różnicy między nimi jest kluczowe do podejmowania świadomych decyzji finansowych.</p>
 <hr>
 </section>
-<section id="nominalna-stopa-procentowa-r_nom" class="level3">
-<h3 class="anchored" data-anchor-id="nominalna-stopa-procentowa-r_nom">1. Nominalna Stopa Procentowa (r_nom)</h3>
+<section id="nominalna-stopa-procentowa-r_nom" class="level4">
+<h4 class="anchored" data-anchor-id="nominalna-stopa-procentowa-r_nom">1. Nominalna Stopa Procentowa (r_nom)</h4>
 <p>Nominalna stopa procentowa, często oznaczana jako <strong>stopa nominalna w skali roku</strong> (np. 8% p.a. - <em>per annum</em>), to podstawowa, “reklamowana” wartość oprocentowania.</p>
 <p><strong>Kluczowe cechy:</strong></p>
 <ul>
@@ -1455,8 +1477,8 @@ df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1
 <p><strong>Przykład:</strong> Bank oferuje lokatę na 10% w skali roku. To jest właśnie nominalna stopa procentowa.</p>
 <hr>
 </section>
-<section id="efektywna-stopa-procentowa-r_eff" class="level3">
-<h3 class="anchored" data-anchor-id="efektywna-stopa-procentowa-r_eff">2. Efektywna Stopa Procentowa (r_eff)</h3>
+<section id="efektywna-stopa-procentowa-r_eff" class="level4">
+<h4 class="anchored" data-anchor-id="efektywna-stopa-procentowa-r_eff">2. Efektywna Stopa Procentowa (r_eff)</h4>
 <p>Efektywna stopa procentowa to <strong>rzeczywista stopa zwrotu</strong> z inwestycji lub <strong>realny koszt</strong> kredytu po uwzględnieniu efektu <strong>procentu składanego</strong> (czyli doliczania odsetek do kapitału w ciągu roku).</p>
 <p><strong>Kluczowe cechy:</strong></p>
 <ul>
@@ -1480,8 +1502,8 @@ df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1
 <p>Jak widać, mimo tej samej stopy nominalnej (12%), częstsza kapitalizacja sprawiła, że realny zysk był wyższy.</p>
 <hr>
 </section>
-<section id="twierdzenie-charakteryzujące-relacje-między-nimi-wzór" class="level3">
-<h3 class="anchored" data-anchor-id="twierdzenie-charakteryzujące-relacje-między-nimi-wzór">3. Twierdzenie Charakteryzujące Relacje Między Nimi (Wzór)</h3>
+<section id="twierdzenie-charakteryzujące-relacje-między-nimi-wzór" class="level4">
+<h4 class="anchored" data-anchor-id="twierdzenie-charakteryzujące-relacje-między-nimi-wzór">3. Twierdzenie Charakteryzujące Relacje Między Nimi (Wzór)</h4>
 <p>Relację między nominalną a efektywną stopą procentową opisuje precyzyjny wzór matematyczny.</p>
 <p><strong>Wzór:</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -1512,8 +1534,8 @@ df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1
 <p>Wynik jest identyczny z tym, który uzyskaliśmy, licząc “krok po kroku”.</p>
 <hr>
 </section>
-<section id="podsumowanie-i-praktyczne-zastosowanie" class="level3">
-<h3 class="anchored" data-anchor-id="podsumowanie-i-praktyczne-zastosowanie">Podsumowanie i Praktyczne Zastosowanie</h3>
+<section id="podsumowanie-i-praktyczne-zastosowanie" class="level4">
+<h4 class="anchored" data-anchor-id="podsumowanie-i-praktyczne-zastosowanie">Podsumowanie i Praktyczne Zastosowanie</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1554,6 +1576,7 @@ df(Z_t) = \sum_{i=1}^d \frac{\partial f}{\partial x_i}(Z_t) dZ_t^{(i)} + \frac{1
 <p><strong>Przykład:</strong> * <strong>Kredyt A:</strong> 10% nominalnie, kapitalizacja miesięczna. * <strong>Kredyt B:</strong> 10,1% nominalnie, kapitalizacja półroczna.</p>
 <p>Na pierwszy rzut oka Kredyt A wydaje się tańszy. Obliczmy efektywne stopy: * <strong>Kredyt A (r_eff):</strong> (1 + 0,10 / 12)¹² - 1 ≈ <strong>10,47%</strong> * <strong>Kredyt B (r_eff):</strong> (1 + 0,101 / 2)² - 1 ≈ <strong>10,36%</strong></p>
 <p>Okazuje się, że Kredyt B, mimo wyższej stopy nominalnej, jest w rzeczywistości tańszy, ponieważ odsetki są doliczane rzadziej.</p>
+</section>
 </section>
 <section id="pojęcie-renty-oraz-główne-rodzaje-rent-ich-wartości-obecne-wartości-przyszłe-i-przykłady-zastosowań." class="level3">
 <h3 class="anchored" data-anchor-id="pojęcie-renty-oraz-główne-rodzaje-rent-ich-wartości-obecne-wartości-przyszłe-i-przykłady-zastosowań.">2. Pojęcie renty oraz główne rodzaje rent – ich wartości obecne, wartości przyszłe i przykłady zastosowań.</h3>
