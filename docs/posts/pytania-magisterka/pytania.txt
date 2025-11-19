@@ -1,0 +1,38 @@
+1.1 Definicja, własności i wybrane zastosowania macierzy Jordana.
+1.2 Definicja przestrzeni unitarnej i metoda ortogonalizacji Grama-Schmidta.
+1.3 Wybrane metody dekompozycji macierzy.
+2.1 Zasada działania sieci typu Transformer.
+2.2 Problem zanikającego i eksplodującego gradientu w modelach rekurencyjnych.
+2.3 Rozwiązania z zakresu technik głębokiego uczenia dedykowanych do zadań wizji komputerowej.
+3.1 Podstawowe komendy REST API służące do komunikacji.
+3.2 Reaktywność i realizacja w aplikacjach Shiny.
+3.3 Metody optymalizacji wydajności aplikacji Shiny obsługującej duże zbiory danych.
+4.1 Rozkłady statystyczne stosowane w analizie niezawodności.
+4.2 Modele szeregowe, równoległe i mieszane obiektów technicznych.
+4.3 Wskaźniki gotowości systemu - MTBF, MTTR, dostępność eksploatacyjna.
+5.1 Wartości własne macierzy i sposoby ich wyznaczania.
+5.2 Metody Rungego-Kutty do rozwiązywania równań różniczkowych.
+5.3 Generatory liczb pseudolosowych i ich zastosowanie do obliczania całek oznaczonych metodą Monte-Carlo.
+6.1 Sposoby tworzenia modeli matematycznych obiektów lub procesów sterowania. Identyfikacja procesu sterowania.
+6.2 Charakterystyka statyczna i charakterystyka dynamiczna procesu. Przykłady obu charakterystyk dla wybranego procesu.
+6.3 Metody ograniczania skutków niepożądanego oddziaływania na proces.
+7.1 Korzystając z oznaczenia Kendalla podać charakterystykę systemu M/D/n/m.
+7.2 Korzystając z formuł Littla opisz zależność pomiędzy oczekiwaną liczbą klientów w systemie a średnim czasem spędzonym w systemie.
+7.3 Podaj różnice w oszacowaniu własności systemów obsługi ze względu na sposób połączenia serwerów.
+8.1 Mechanizm działania algorytmu najczęściej używanego do kompresji wideo.
+8.2 Pojęcie „przetwarzania obrazów cyfrowych”. Zasady postępowania.
+8.3 Formaty plików obrazów bez kompresji stratnej i ich charakterystyka.
+9.1 Proces Poissona – definicja, konstrukcja i zastosowania.
+9.2 Proces urodzin i śmierci – definicja i przykłady zastosowania.
+9.3 Twierdzenie ergodyczne i przykłady jego zastosowania.
+10.1 Całki stochastyczne: ich rodzaje i definicje.
+10.2 Różniczka stochastyczna Itô, wzór Itô.
+11.1 Nominalna i efektywna stopa procentowa oraz twierdzenie charakteryzujące relacje między nimi.
+11.2 Pojęcie renty oraz główne rodzaje rent – ich wartości obecne, wartości przyszłe i przykłady zastosowań.
+11.3 Procesy akumulacji i dyskontowania oraz ich rodzaje.
+12.1 Modele ryzyka stosowane w ubezpieczeniach majątkowych.
+12.2 Podstawowe rozkłady liczby szkód w modelu ryzyka łącznego.
+12.3 Funkcja generująca momenty i funkcja generująca kumulanty oraz ich zastosowanie w teorii ubezpieczeń.
+13.1 Tablice trwania życia i ich zastosowanie w ubezpieczeniach życiowych.
+13.2 Pojęcie wartości aktuarialnej w ubezpieczeniach życiowych.
+13.3 Obliczanie składek netto w ubezpieczeniach życiowych.

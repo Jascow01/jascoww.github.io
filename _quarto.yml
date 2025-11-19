@@ -1,6 +1,8 @@
+#main zagadnienia-magisterka/_quarto.yml
 project:
   type: website
   output-dir: docs
+
 
 website:
   title: "Coś tu będzie"
@@ -10,13 +12,9 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Posty"
-        href: posts/
-      - text: "O mnie"
-        href: about.qmd
     right:
       - icon: github
-        href: https://github.com/Jascoww
+        href: https://github.com/Jascow01
       - icon: rss
         href: posts/index.xml
   page-footer:
@@ -30,3 +28,5 @@ format:
     toc: true
     toc-location: left
     page-layout: article
+
+
